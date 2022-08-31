@@ -1,0 +1,454 @@
+% This example is meant to be compiled with lualatex or xelatex
+% The theme itself also supports pdflatex
+\PassOptionsToPackage{unicode}{hyperref}
+\documentclass[aspectratio=169, 12pt]{beamer}
+
+% Load packages you need here
+\usepackage{polyglossia}
+\setmainlanguage{german}
+
+\usepackage{csquotes}
+    
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+% \DeclareUnicodeCharacter{2212}{−}
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{patterns,shapes.arrows}
+\pgfplotsset{
+  compat=newest,
+  legend style={
+    font=\scriptsize,
+  },
+  x tick label style={
+    font=\scriptsize,
+    /pgf/number format/.cd,
+    use comma,
+    % fixed,
+    % fixed zerofill,
+    % precision=1,
+    /tikz/.cd
+  },
+  y tick label style={
+    font=\scriptsize,
+    /pgf/number format/.cd,
+    use comma,
+    fixed,
+    fixed zerofill,
+    precision=1,
+    /tikz/.cd
+  },
+  x label style={font=\footnotesize},
+  y label style={font=\footnotesize}
+}
+% \pgfplotsset{compat=newest}
+
+% load the theme after all packages
+
+\usetheme[
+  showtotalframes, % show total number of frames in the footline
+]{tudo}
+
+\setbeamertemplate{section in toc}[sections numbered]
+
+% Put settings here, like
+\unimathsetup{
+  math-style=ISO,
+  bold-style=ISO,
+  nabla=upright,
+  partial=upright,
+  mathrm=sym,
+}
+\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+
+% Tikz
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+\title{Kompression neuronaler Netze mit Hilfe von Wavelet Transformationen}
+\author[L.~Camphausen]{Lucas Camphausen}
+\date{6. September 2022}
+\institute[LS 11]{Lehrstuhl für Algorithm Engineering (LS 11) \\  Fakultät für Informatik \\~\\ Betreuer: Prof. Dr. Rudolph, Dr.-Ing. Brehler (Fraunhofer IML)}
+% \betreuer{Prof. Dr. Rudolph, Dr. Marius Brehler (Fraunhofer IML)}
+% \titlegraphic{\includegraphics[height=4.3cm]{example-image-a}}
+
+
+\begin{document}
+
+\begin{tiny}
+  \maketitle
+\end{tiny}
+
+% --- Übersicht
+\begin{frame}{Übersicht}
+  \tableofcontents
+\end{frame}
+% --- Übersicht
+
+% === Motivation
+\section{Motivation}
+
+\begin{frame}{Übersicht}
+  \tableofcontents[currentsection]
+\end{frame}
+
+% --- Motivation 1
+\begin{frame}{Motivation}
+  \begin{itemize}
+    \item Convolutional Neural Networks (CNN) sind ein vielfach genutztes Konzept des Maschinellen Lernens.
+    \item Speicherbedarf ist verhältnismäßig groß:
+          \begin{itemize}
+            \item VGG16: 520 MB
+            \item ResNet18: 40 MB
+            \item MobileNet v2: 16 MB
+          \end{itemize}
+    \item Ausführung auf ressourcenbeschränkter Hardware problematisch:
+          \begin{itemize}
+            \item Teils stehen nur wenige MB Flash zur Verfügung.
+            \item Ressourcenverbrauch (insb. Speicherbedarf) muss gesenkt werden.
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+% --- Motivation 1
+
+% === Motivation
+
+% === Stand der Forschung
+\section{Stand der Forschung}
+
+\begin{frame}{Übersicht}
+  \tableofcontents[currentsection]
+\end{frame}
+
+% --- Stand der Forschung 1
+\begin{frame}{Stand der Forschung}
+  Verschiedene Techniken zur Kompression stehen zur Verfügung:
+
+  \begin{itemize}
+    \item Quantisierung
+          \begin{itemize}
+            \item Reduzierung des Speicherbedarfs der einzelnen Parameter
+            \item Repräsentation der Parameter mit geringerer Genauigkeit (16-bit Gleitkommazahl, 8-bit Ganzzahl, Boolean)
+          \end{itemize}
+    \item Pruning
+          \begin{itemize}
+            \item Reduzierung der Anzahl an Parametern
+            \item Unstrukturiertes Entfernen einzelner unwichtiger Parameter
+            \item Strukturiertes Entfernen von Filtern
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+% --- Stand der Forschung 1
+
+% --- Stand der Forschung 2
+\begin{frame}
+  \begin{itemize}
+    \item Weight-Sharing
+          \begin{itemize}
+            \item Ausnutzen von Ähnlichkeiten zwischen Filtern
+            \item Clustering von Filtern
+            \item Speicherung der Clusterzentren
+          \end{itemize}
+    \item Transformationsbasierte Kompression
+          \begin{itemize}
+            \item Parallelen zur Kompression von Bilddaten
+            \item Transformation der Daten in andere Repräsentation:
+                  \begin{itemize}
+                    \item JPEG (Diskrete Kosinus Transformation)
+                    \item JPEG 2000 (Diskrete Wavelet Transformation)
+                  \end{itemize}
+            \item Vernachlässigung von unwichtigen Koeffizienten
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+% --- Stand der Forschung 2
+
+% === Grundlagen
+\section{Transformationsbasierte Kompression}
+
+\begin{frame}{Übersicht}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Ziel der Arbeit}
+  Ziel der Arbeit ist die Untersuchung der Möglichkeiten neuronale Netze mit Hilfe der Diskreten Wavelet Transformation zu komprimieren.
+  Folgende Aspekte sollen betrachtet werden:
+  \begin{itemize}
+    \item Wie lässt sich durch die DWT eine Kompression erreichen?
+    \item Welche Kompressionsraten können erreicht werden?
+    \item Ist es möglich das Netz auf einem Mikrocontroller bare-metal ohne Betriebssystem auszuführen?
+    \item Genauigkeit und Laufzeit sind nicht immer die kritischen Messgrößen.
+    \item Es soll mit der DCT verglichen werden.
+  \end{itemize}
+\end{frame}
+
+% --- Grundlagen 1
+% \begin{frame}{Grundlagen}
+%   Die Gewichte, vor allem die der Faltungsschichten, sollen auf folgende Art komprimiert werden:
+%   \begin{itemize}
+%     \item Filter werden in Blöcken gruppiert.
+%           \begin{itemize}
+%             \item Im einfachsten Fall bildet jeder Filter einen eigenen Block.
+%           \end{itemize}
+%     \item Blöcke werden mit der DWT transformiert.
+%     \item Für jedes Subband wird ein Clustering mit verschiedenen Parametern durchgeführt.
+%     \item Clusterzentren werden gespeichert.
+%     \item Das Netz wird nachtrainiert.
+%   \end{itemize}
+% \end{frame}
+% --- Grundlagen 1
+
+% --- Grundlagen 2
+\begin{frame}{Vorgehen}
+  \vspace{-0.8cm}
+  \begin{center}
+    \includegraphics[height=5.5cm]{images/Vorgehen2.pdf}
+  \end{center}
+\end{frame}
+% --- Grundlagen 2
+
+% --- DCT 1
+\begin{frame}{Diskrete Kosinus Transformation (DCT)}
+  \begin{itemize}
+    \item DCT ist eine Transformation aus dem Orts- in den Frequenzbereich.
+    \item Eingangssignal wird als Linearkombination von Kosinusfunktionen verschiedener Frequenzen dargestellt.
+    \item Datenpunkte $x_0, ..., x_{N-1}$ sind gegeben.
+    \item DCT Koeffizienten $u_0, ..., u_{N-1}$ werden wie folgt berechnet:
+          \begin{equation*}
+            u_k = \sum_{n=0}^{N-1} x_n d_k(n) \coloneqq \sum_{n=0}^{N-1} x_n cos\left( \frac{\pi}{N} k \left( n + \frac{1}{2} \right) \right), \qquad k = 0, ..., N-1
+          \end{equation*}
+  \end{itemize}
+\end{frame}
+% --- DCT 1
+
+% --- DCT 2
+\begin{frame}{DCT Basisfunktionen}
+  \begin{wrapfigure}{l}{8cm}
+    \vspace{-1.2cm}
+    \resizebox{7.5cm}{!}{%
+      \input{tikz/dct_basis.tex}
+    }
+  \end{wrapfigure}
+  \leavevmode
+  \begin{itemize}
+    \item Basisfunktionen $d_k$ sind \\ Kosinus-Halbwellen.
+    \item Basisfunktionen $d_k$ werden an den \\ Stellen $0, 1, \ldots , N-1$ ausgewertet.
+    \item Verschiebung um $\frac{1}{2}$ sorgt \\ für Invertierbarkeit.
+  \end{itemize}
+\end{frame}
+% --- DCT 2
+
+% --- DCT 3
+% \begin{frame}{DCT Beispiel}
+%   \begin{itemize}
+%     \item Eingangssignal $x=\left[ 8, 16, 24, 32, 40, 48, 56, 64 \right]$ ist gegeben.
+%   \end{itemize}
+% \end{frame}
+% --- DCT 3
+
+% --- DWT 1
+\begin{frame}{Wavelets}
+  \begin{wrapfigure}{l}{8cm}
+    \vspace{-0.9cm}
+    \resizebox{7.5cm}{!}{%
+      \input{tikz/mexican_hat.tex}
+    }
+  \end{wrapfigure}
+  \leavevmode
+  \begin{itemize}
+    \item Wavelet $\psi_{a,b}$ ist eine \\ wellenförmige Funktion.
+    \item Wavelets haben lokalen Träger.
+    \item Sie sind durch Skalierungsfaktor $a$ und Verschiebung $b$ parametrisiert.
+    \item $\psi_{a,b}$ bildet durch bestimmte \\ Konstruktion eine Basis \\ des Raums $L^2(\mathbb{R})$.
+  \end{itemize}
+\end{frame}
+% --- DWT 1
+
+% --- DWT 2
+\begin{frame}{Beispiel}
+  \vspace{-1.5cm}
+  Ein Beispiel ist der sogenannte Mexican-Hat
+  \begin{small}
+    \begin{equation*}
+      \psi_{a,b}(t) = \frac{2}{\sqrt{3a}\pi^{1/4}} \left( 1- \left( \frac{t-b}{a} \right)^2 \right) \exp \left( - \frac{\left( t-b \right)^2}{2a^2} \right).
+    \end{equation*}
+  \end{small}
+  \begin{wrapfigure}{l}{6.5cm}
+    \vspace{-0.6cm}
+    \resizebox{5.4cm}{!}{%
+      \input{tikz/mexican_hat_2.tex}
+    }
+  \end{wrapfigure}
+  \leavevmode
+  \begin{itemize}
+    \item Streckung durch $a<0$
+    \item Stauchung durch $a>0$
+  \end{itemize}
+\end{frame}
+% --- DWT 2
+
+% --- DWT 3
+\begin{frame}{Wavelet Transformation}
+  Die (kontinuierliche) Wavelet Transformation einer Funktion $x(t)$ mit dem Wavelet $\psi_{a, b}$ ist gegeben durch die Faltung
+  \begin{small}
+    \begin{equation*}
+      \mathcal{W}_{x, \psi}(a, b) \coloneqq \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} \psi \left( \frac{t-b}{a} \right) x(t) dt.
+    \end{equation*}
+  \end{small}
+  \vspace{-0.35cm}
+  \begin{center}
+    \resizebox{0.34\textwidth}{!}{%
+      \input{tikz/wavelet_conv_1.tex}
+    }
+    \qquad
+    \resizebox{0.34\textwidth}{!}{%
+      \input{tikz/wavelet_conv_2.tex}
+    }
+  \end{center}
+\end{frame}
+% --- DWT 3
+
+% --- DWT 4
+\begin{frame}{Diskrete Wavelet Transformation}
+  Bei der DWT sind das Signal $x[n]$, die Skalierung $a$ und die Translation $b$ diskret.
+  Sie wird durch Faltung von $x[n]$ mit einem Tiefpassfilter $g[n]$ und Hochpassfilter $h[n]$ berechnet:
+  \begin{itemize}
+    \item Approximationskoeffizienten $a[n] = \left(x*g\right)[n]$
+    \item Detailkoeffizienten $d[n] = \left(x*h\right)[n]$
+    \item $a[n]$ enthält untere Hälfte und $d[n]$ obere Hälfte der Frequenzen.
+    \item In $a[n]$ und $d[n]$ kann jeder zweite Koeffizient entfernt werden (Downsampling), wobei eine exakte Rekonstruktion möglich ist.
+    \item Rekursive Anwendung auf $a[n]$ ist möglich.
+  \end{itemize}
+  % \begin{equation*}
+  %   a[n] = \left(x*g\right)[n] = \sum_{k=-\infty}^{\infty}x[k]g[n-k]
+  % \end{equation*}
+\end{frame}
+% --- DWT 4
+
+% --- DWT 5
+\begin{frame}
+  \resizebox{\textwidth}{!}{%
+    \input{tikz/filterbank.tex}
+  }
+\end{frame}
+% --- DWT 5
+
+% --- kmeans Clustering 1
+\begin{frame}{k-Means-Clustering}
+  \begin{wrapfigure}{r}{7cm}
+    \vspace{-0.5cm}
+    \resizebox{7cm}{!}{%
+      \input{tikz/k_means.tex}
+    }
+    % \includegraphics[height=5cm]{images/skizze_kmeans}
+  \end{wrapfigure}
+  \leavevmode
+  \begin{itemize}
+    \item Datenpunkte $\symbf{x_j}$ werden in $k$ \\ disjunkte Teilmengen $S_i$ partitioniert.
+    \item Summierter quadratischer Fehler zu \\ Clusterzentren $\symbf{\mu_i}$ wird minnimiert
+          \begin{equation*}
+            \sum_{i=1}^{k} \sum_{\symbf{x_j} \in S_i} \lVert \symbf{x_j} - \symbf{\mu_i} \rVert^2 \rightarrow min.
+          \end{equation*}
+    \item Clusterzentren werden zunächst (zufällig) gewählt und dann iterativ aktualisiert.
+  \end{itemize}
+\end{frame}
+% --- kmeans Clustering 1
+
+% === Vorgehen
+
+% === Experiment
+\section{Erstes Experiment}
+
+\begin{frame}{Übersicht}
+  \tableofcontents[currentsection]
+\end{frame}
+
+% --- Experiment 1
+\begin{frame}{Erstes Experiment}
+  Die Kompressionseigenschaften der DCT und DWT werden an einem einfachen Beispiel untersucht.
+  \begin{itemize}
+    \item Gewichte einer Faltungsschicht eines trainierten CNNs werden komprimiert.
+    \item Mehrere Filter werden als ein Vektor aufgefasst, um die Signallänge zu erhöhen.
+    \item Diese werden jeweils mittels DCT bzw. DWT transformiert.
+    \item Transformierte werden auf die ersten $n$ (DCT) bzw. betraglich größten $n$ (DWT) \\ Koeffizienten beschränkt.
+    \item Transformationen werden invertiert.
+          % \item Norm des Fehlers
+          % \item erwarten bei gelicher Parameterzahl geringeren Fehler bei DWT
+          % \item bei DWT eine geringe Auswahl von Konfigurationen (Wavelet/Tiefe)
+  \end{itemize}
+\end{frame}
+% --- Experiment 1
+
+% --- Experiment 2
+\begin{frame}
+  \begin{wrapfigure}{l}{8cm}
+    \vspace{-0.8cm}
+    \resizebox{7.8cm}{!}{%
+      \input{tikz/haar.tex}
+    }
+  \end{wrapfigure}
+  \leavevmode
+  \begin{itemize}
+    \item Gewichte $W$ einer Faltungsschicht \\ aus einem ResNet18
+    \item 512 Filter der Größe $3 \times 3$
+    \item Gruppierung von jeweils \\ 4 Filtern zu 128 Vektoren der \\ Länge 36
+    \item Haar Wavelet für die DWT
+    \item Nur 2 Subbänder $a_0$ und $d_0$ (Level 1)
+  \end{itemize}
+\end{frame}
+% --- Experiment 2
+
+% --- Experiment 3
+\begin{frame}
+  \begin{wrapfigure}{l}{8cm}
+    \vspace{-0.8cm}
+    \resizebox{7.8cm}{!}{%
+      \input{tikz/experiment_1.tex}
+    }
+  \end{wrapfigure}
+  \leavevmode
+  \begin{itemize}
+    \item $dct(W; n)$ ist DCT Transformierte \\ mit ersten n Koeffizienten
+    \item $dwt(W; n)$ ist DWT Transformierte \\ mit betraglich n größten \\ Koeffizienten
+    \item $e_{\mathcal{T}}(n) = W - \mathcal{T}^{-1}(\mathcal{T}(W; n))$
+          % \item $e_{dwt}(n) = W - idwt(dwt(W; n))$
+    \item $e_{rel}(n) = \frac{\lVert e_{\mathcal{T}}(n) \rVert}{\lVert W \rVert}$
+  \end{itemize}
+\end{frame}
+% --- Experiment 3
+% === Experiment
+
+% === Ausblick
+\section{Ausblick}
+
+\begin{frame}{Ausblick}
+  \tableofcontents[currentsection]
+\end{frame}
+
+% --- Ausblick 1
+\begin{frame}{Ausblick}
+  Neben den in der Motivation genannten Punkten sollen folgende Fragestellungen untersucht werden:
+  \begin{itemize}
+    \item Wie führt man das komprimierte Netz auf der Zielplattform aus?
+          \begin{itemize}
+            \item Die Rücktransformation aller Schichten zur selben Zeit ist nicht sinnvoll.
+            \item Gewichte können schichtweise rekonstruiert werden.
+          \end{itemize}
+    \item Wie werden sinnvolle Parameter (z.B. $k$ in $k$-Means) identifiziert?
+    \item Können verschiedene Schichten sinnvoll gemeinsam geclustert werden?
+  \end{itemize}
+\end{frame}
+% --- Ausblick 1
+
+% === Ausblick
+\end{document}

@@ -1,0 +1,56 @@
+\begin{tikzpicture}[auto,>=latex']
+    \tikzstyle{block} = [draw, shape=rectangle, minimum height=3em, minimum width=3em, node distance=2cm, line width=1pt]
+    \tikzstyle{branch} = [fill, shape=circle, minimum size=4pt, inner sep=0pt]
+    \tikzstyle{downsample} = [draw, shape=circle, minimum height=3em, minimum width=3em, node distance=2cm, line width=1pt]
+    \tikzstyle{coeff} = [minimum height=1.5em, minimum width=1.5em, node distance=2cm]
+    %Creating Blocks and Connection Nodes
+    \node (input) {$x[n]$};
+    \node [block, right of=input] (h_1) {$h[n]$};
+    \node [block, above of=h_1] (g_1) {$g[n]$};
+    \node [downsample, right of=h_1] (downsample_h_1) {$\downarrow 2$};
+    \node [downsample, right of=g_1] (downsample_g_1) {$\downarrow 2$};
+    \node [coeff, right of=downsample_h_1] (d_0) {$d_0[n]$};
+    \node [coeff, right of=downsample_g_1] (a_0) {$a_0[n]$};
+    \path (input) -- coordinate (branch_1) (h_1);
+
+    \node [block, right of=a_0] (h_2) {$h[n]$};
+    \node [block, above of=h_2] (g_2) {$g[n]$};
+    \node [downsample, right of=h_2] (downsample_h_2) {$\downarrow 2$};
+    \node [downsample, right of=g_2] (downsample_g_2) {$\downarrow 2$};
+    \node [coeff, right of=downsample_h_2] (d_1) {$d_1[n]$};
+    \node [coeff, right of=downsample_g_2] (a_1) {$a_1[n]$};
+    \path (a_0) -- coordinate (branch_2) (h_2);
+
+    \node [block, right of=a_1] (h_3) {$h[n]$};
+    \node [block, above of=h_3] (g_3) {$g[n]$};
+    \node [downsample, right of=h_3] (downsample_h_3) {$\downarrow 2$};
+    \node [downsample, right of=g_3] (downsample_g_3) {$\downarrow 2$};
+    \node [coeff, right of=downsample_h_3] (d_2) {$d_2[n]$};
+    \node [coeff, right of=downsample_g_3] (a_2) {$a_2[n]$};
+    \path (a_1) -- coordinate (branch_3) (h_3);
+
+    \node [below of=h_3, xshift=15mm, yshift=-30mm] (legend) {\begin{tabular}{ll} $x[n]$: & Eingangssignal \\ $g[n]$: & Tiefpassfilter \\ $h[n]$: & Hochpassfilter \\ $\downarrow 2$: & Downsampling \\ $a_k[n]$: & Approximationskoeffizienten \\ $d_k[n]$: & Detailkoeffizienten \end{tabular}};
+    %Conecting Blocks
+    \begin{scope}[line width=1pt]
+        \draw[->] (input) -- (h_1);
+        \draw[->] (branch_1) node[branch] {} |- (g_1);
+        \draw[->] (h_1) -- (downsample_h_1);
+        \draw[->] (downsample_h_1) -- (d_0);
+        \draw[->] (g_1) -- (downsample_g_1);
+        \draw[->] (downsample_g_1) -- (a_0);
+
+        \draw[->] (a_0) -- (h_2);
+        \draw[->] (branch_2) node[branch] {} |- (g_2);
+        \draw[->] (h_2) -- (downsample_h_2);
+        \draw[->] (downsample_h_2) -- (d_1);
+        \draw[->] (g_2) -- (downsample_g_2);
+        \draw[->] (downsample_g_2) -- (a_1);
+
+        \draw[->] (a_1) -- (h_3);
+        \draw[->] (branch_3) node[branch] {} |- (g_3);
+        \draw[->] (h_3) -- (downsample_h_3);
+        \draw[->] (downsample_h_3) -- (d_2);
+        \draw[->] (g_3) -- (downsample_g_3);
+        \draw[->] (downsample_g_3) -- (a_2);
+    \end{scope}
+\end{tikzpicture}

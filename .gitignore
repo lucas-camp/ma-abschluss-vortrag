@@ -1,0 +1,6 @@
+build
+*fuse_*
+*.swp
+*.zip
+python/venv/
+.vscode
