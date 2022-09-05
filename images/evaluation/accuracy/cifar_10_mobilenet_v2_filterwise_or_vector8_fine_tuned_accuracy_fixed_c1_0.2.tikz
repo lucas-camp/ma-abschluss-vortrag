@@ -1,0 +1,63 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{crimson2143940}{RGB}{214,39,40}
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{forestgreen4416044}{RGB}{44,160,44}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+legend cell align={left},
+legend style={
+  fill opacity=0.8,
+  draw opacity=1,
+  text opacity=1,
+  at={(0.03000000,0.03000000)},
+  anchor=south west,
+  draw=lightgray204
+},
+tick align=outside,
+tick pos=left,
+x grid style={darkgray176},
+xlabel={\(\displaystyle r\)},
+xmin=0.85, xmax=4.0,
+xtick style={color=black},
+y grid style={darkgray176},
+ylabel={acc},
+ymin=0.62000000, ymax=0.90000000,
+ytick style={color=black}
+]
+\addplot [semithick, steelblue31119180, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+3.78994133 0.69900000
+3.57568455 0.78539997
+3.27282838 0.83270001
+2.82869954 0.84960002
+};
+\addlegendentry{DCT}
+\addplot [semithick, darkorange25512714, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+3.78859276 0.75230002
+3.57321125 0.79269999
+3.26864832 0.82959998
+2.82243168 0.84630001
+};
+\addlegendentry{DWT[HAAR]}
+\addplot [semithick, forestgreen4416044, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+3.44111791 0.73570001
+3.23124076 0.79960001
+2.92840331 0.80599999
+2.48936808 0.83850002
+};
+\addlegendentry{DWT[DB2]}
+\addplot [semithick, crimson2143940, mark=asterisk, mark size=3.00000000, mark options={solid}]
+table {%
+1.00000000 0.89359999
+};
+\addlegendentry{Original}
+\end{axis}
+
+\end{tikzpicture}

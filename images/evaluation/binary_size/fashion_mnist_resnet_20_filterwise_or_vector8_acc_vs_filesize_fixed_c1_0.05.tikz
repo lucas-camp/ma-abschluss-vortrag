@@ -1,0 +1,59 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+legend cell align={left},
+legend style={
+  fill opacity=0.8,
+  draw opacity=1,
+  text opacity=1,
+  at={(0.97000000,0.03000000)},
+  anchor=south east,
+  draw=lightgray204
+},
+tick align=outside,
+tick pos=left,
+x grid style={darkgray176},
+xlabel={Firmwaregröße [kB]},
+xmin=372.36132812, xmax=1331.12304688,
+xtick style={color=black},
+y grid style={darkgray176},
+ylabel={acc},
+ymin=0.93000000, ymax=0.95000000,
+ytick style={color=black}
+]
+\addplot [semithick, steelblue31119180, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+415.94140625 0.93980002
+447.12890625 0.94270003
+473.25390625 0.94330001
+524.31640625 0.94290000
+617.87890625 0.94450003
+802.05859375 0.94450003
+895.12109375 0.94370002
+};
+\addlegendentry{DCT}
+\addplot [semithick, darkorange25512714, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+447.79296875 0.93870002
+481.73046875 0.94120002
+515.94140625 0.94279999
+579.25390625 0.94239998
+696.00390625 0.94230002
+927.34765625 0.94209999
+1043.10546875 0.94250000
+};
+\addlegendentry{DWT[HAAR]}
+\addplot [semithick, red, mark=asterisk, mark size=3.00000000, mark options={solid}]
+table {%
+1287.54296875 0.94690001
+};
+\addlegendentry{Original}
+\end{axis}
+
+\end{tikzpicture}

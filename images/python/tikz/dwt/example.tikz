@@ -1,0 +1,60 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+legend cell align={left},
+legend style={
+  fill opacity=0.8,
+  draw opacity=1,
+  text opacity=1,
+  at={(0.97,0.03)},
+  anchor=south east,
+  draw=lightgray204
+},
+tick align=outside,
+tick pos=left,
+width=7cm,
+x grid style={darkgray176},
+xlabel={\(\displaystyle k\)},
+xmin=-0.45, xmax=9.45,
+xtick style={color=black},
+y grid style={darkgray176},
+ylabel={\(\displaystyle x_k\); \(\displaystyle c_k\)},
+ymin=-0.211738573665195, ymax=0.370648146969085,
+ytick style={color=black}
+]
+\addplot [semithick, steelblue31119180, dashed, mark=x, mark size=3, mark options={solid}]
+table {%
+0 -0.18526645
+1 -0.06760673
+2 0.22518145
+3 0.26155695
+4 -0.03249458
+5 0.04650225
+6 0.06334221
+7 0.16820018
+8 0.18438391
+};
+\addlegendentry{$\mathbf{x}$}
+\addplot [semithick, darkorange25512714, dashed, mark=x, mark size=3, mark options={solid}]
+table {%
+0 -0.178808340358206
+1 0.34417602330389
+2 0.00990491844562337
+3 0.16372519410114
+4 0.26075822620538
+5 -0.0831979858845105
+6 -0.0257213627190513
+7 -0.0558591941852409
+8 -0.0741457816484556
+9 0
+};
+\addlegendentry{$\mathbf{c}$}
+\end{axis}
+
+\end{tikzpicture}

@@ -1,0 +1,13 @@
+\tikzstyle{a1} = [fill=red, opacity=0.35, text opacity=1]
+\tikzstyle{d1} = [fill=blue, opacity=0.35, text opacity=1]
+\tikzstyle{d0} = [fill=green, opacity=0.35, text opacity=1]
+\begin{tikzpicture}[scale=1.0]
+
+  \matrix [nodes=draw,column sep=-0.2mm, minimum size=6mm]
+  {
+    \node [a1] {$c_0$}; & \node [a1] {$c_1$}; & \node [a1] {$c_2$}; &
+    \node [d1] {$c_3$}; & \node [d1] {$c_4$}; &
+    \node [d0] {$c_5$}; & \node [d0] {$c_6$}; & \node [d0] {$c_7$}; & \node [d0] {$c_8$}; \\
+  };
+
+\end{tikzpicture}

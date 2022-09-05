@@ -1,0 +1,82 @@
+\definecolor{custom_red}{RGB}{255,166,166}
+\definecolor{custom_green}{RGB}{166,255,166}
+\definecolor{custom_blue}{RGB}{166,166,255}
+\definecolor{custom_grey}{RGB}{192,192,192}
+
+\tikzstyle{grey} = [fill=custom_grey, opacity=1.0, text opacity=1]
+\tikzstyle{red} = [fill=custom_red, opacity=1.0, text opacity=1]
+\tikzstyle{blue} = [fill=custom_blue, opacity=1.0, text opacity=1]
+\tikzstyle{green} = [fill=custom_green, opacity=1.0, text opacity=1]
+
+\tikzstyle{downsampling} = [circle, minimum width=3mm, minimum height=3mm,text centered, draw=black]
+
+\begin{tikzpicture}[scale=1.0]
+
+  \matrix (x1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=0pt, xshift=0pt]
+  {
+    \node [grey, align=left, text depth=10mm, text width=12mm] {$\mathbf{x}_1$}; \\
+  };
+
+  %% Filter
+  \matrix (w3) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=8mm, yshift=15pt, xshift=135pt]
+  {
+    \node [blue, align=left, text depth=4mm, text width=6mm] {$\mathbf{w}_3$}; \\
+  };
+
+  \matrix (w2) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=8mm, yshift=0pt, xshift=120pt]
+  {
+    \node [green, align=left, text depth=4mm, text width=6mm] {$\mathbf{w}_2$}; \\
+  };
+
+  \matrix (w1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=8mm, yshift=-15pt, xshift=105pt]
+  {
+    \node [red, align=left, text depth=4mm, text width=6mm] {$\mathbf{w}_1$}; \\
+  };
+
+  \matrix (z3) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=15pt, xshift=235pt]
+  {
+    \node [blue, align=left, text depth=10mm, text width=12mm] {$\mathbf{z}_{1,3}$}; \\
+  };
+
+  \matrix (z2) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=0pt, xshift=220pt]
+  {
+    \node [green, align=left, text depth=10mm, text width=12mm] {$\mathbf{z}_{1,2}$}; \\
+  };
+
+  \matrix (z1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=-15pt, xshift=205pt]
+  {
+    \node [red, align=left, text depth=10mm, text width=12mm] {$\mathbf{z}_{1,1}$}; \\
+  };
+
+  % RESULT
+  \matrix (y4) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=22.5pt, xshift=355pt]
+  {
+    \node [blue, align=left, text depth=10mm, text width=12mm] {$\mathbf{y}_{4}$}; \\
+  };
+  \matrix (y3) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=7.5pt, xshift=340pt]
+  {
+    \node [blue, align=left, text depth=10mm, text width=12mm] {$\mathbf{y}_{3}$}; \\
+  };
+  \matrix (y2) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=-7.5pt, xshift=325pt]
+  {
+    \node [green, align=left, text depth=10mm, text width=12mm] {$\mathbf{y}_{2}$}; \\
+  };
+  \matrix (y1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=-22.5pt, xshift=310pt]
+  {
+    \node [red, align=left, text depth=10mm, text width=12mm] {$\mathbf{y}_{1}$}; \\
+  };
+
+  
+
+  \draw [->] (x1.east) -- (w1.west) node[below, pos=0.5] {$\ast$};
+  \draw [->] (x1.east) -- (w2.west) node[above, pos=0.85] {$\ast$};
+  \draw [->] (x1.east) -- (w3.west) node[above, pos=0.5] {$\ast$};
+  \draw [->] ([yshift=-1mm]w1.east) -- ([yshift=5mm]z1.west);
+  \draw [->] ([yshift=-1mm]w2.east) -- ([yshift=5mm]z2.west);
+  \draw [->] ([yshift=-1mm]w3.east) -- ([yshift=5mm]z3.west);
+  \draw [->] ([yshift=-5mm]z1.east) -- ([yshift=5mm]y1.west);
+  \draw [->] ([yshift=-5mm]z2.east) -- ([yshift=5mm]y2.west);
+  \draw [->] ([yshift=-5mm]z3.east) -- ([yshift=5mm]y3.west);
+  \draw [->] ([yshift=-5mm]z3.east) -- ([yshift=5mm]y4.west);
+
+\end{tikzpicture}

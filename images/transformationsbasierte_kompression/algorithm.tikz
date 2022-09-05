@@ -1,0 +1,162 @@
+\definecolor{custom_red}{RGB}{255,166,166}
+\definecolor{custom_green}{RGB}{166,255,166}
+\definecolor{custom_blue}{RGB}{166,166,255}
+\definecolor{custom_grey}{RGB}{192,192,192}
+
+\tikzstyle{grey} = [fill=custom_grey, opacity=1.0, text opacity=1]
+\tikzstyle{red} = [fill=custom_red, opacity=1.0, text opacity=1]
+\tikzstyle{blue} = [fill=custom_blue, opacity=1.0, text opacity=1]
+\tikzstyle{green} = [fill=custom_green, opacity=1.0, text opacity=1]
+
+\begin{tikzpicture}[scale=1.0]
+
+  \matrix (f1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=15pt, xshift=15pt]
+  {
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+  };
+
+  \matrix (f2) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=5pt, xshift=5pt]
+  {
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+  };
+
+  \matrix (f3) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-5pt, xshift=-5pt]
+  {
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+  };
+
+  \matrix (f4) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-15pt, xshift=-15pt]
+  {
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+    \node [grey] {}; & \node [grey] {}; & \node [grey] {}; \\
+  };
+
+% RED
+  \matrix (s21) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=75, xshift=175]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+  \matrix (s22) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=65, xshift=165]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+  \matrix (s23) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=55, xshift=155]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+  \matrix (s24) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=45, xshift=145]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+
+% BLUE
+  \matrix (s11) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=15, xshift=175]
+  {
+    \node [blue] {}; & \node [blue] {}; & \node [blue] {}; \\
+  };
+  \matrix (s12) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=5, xshift=165]
+  {
+    \node [blue] {}; & \node [blue] {}; & \node [blue] {}; \\
+  };
+  \matrix (s13) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-5, xshift=155]
+  {
+    \node [blue] {}; & \node [blue] {}; & \node [blue] {}; \\
+  };
+  \matrix (s14) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-15, xshift=145]
+  {
+    \node [blue] {}; & \node [blue] {}; & \node [blue] {}; \\
+  };
+
+% GREEN
+  \matrix (s01) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-45, xshift=175]
+  {
+    \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; \\
+  };
+  \matrix (s02) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-55, xshift=165]
+  {
+    \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; \\
+  };
+  \matrix (s03) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-65, xshift=155]
+  {
+    \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; \\
+  };
+  \matrix (s04) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-75, xshift=145]
+  {
+    \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; \\
+  };
+
+% RED
+  \matrix (s21c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=70, xshift=335]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+  \matrix (s22c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=60, xshift=325]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+  \matrix (s23c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=50, xshift=315]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+  \matrix (s24c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=40, xshift=305]
+  {
+    \node [red] {}; & \node [red] {}; & \node [red] {}; \\
+  };
+
+% BLUE
+  \matrix (s11c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=10, xshift=325]
+  {
+    \node [blue] {}; & \node [blue] {}; & \node [blue] {}; \\
+  };
+  \matrix (s12c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=0, xshift=315]
+  {
+    \node [blue] {}; & \node [blue] {}; & \node [blue] {}; \\
+  };
+  \matrix (s13c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-10, xshift=305]
+  {
+    \node [blue] {}; & \node [blue] {}; & \node [blue] {}; \\
+  };
+
+% GREEN
+  \matrix (s01c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-40, xshift=315]
+  {
+    \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; \\
+  };
+  \matrix (s02c) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=6mm, yshift=-50, xshift=305]
+  {
+    \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; & \node [green] {}; \\
+  };
+
+  \node at (-0.2,-4) {Original Filter};
+  \node at (5.2,-4) {Subbänder};
+  \node at (10.8,-4) {Geclusterte Subbänder};
+
+  \node [below right=-0.5cm and -0.2cm of f4] {$\mathbf{w}_{ij}$};
+  \node [below right=-0.5cm and -0.2cm of s04] {$\mathbf{S}_{0}$};
+  \node [below right=-0.5cm and -0.2cm of s14] {$\mathbf{S}_{1}$};
+  \node [below right=-0.5cm and -0.2cm of s24] {$\mathbf{S}_{2}$};
+  \node [below right=-0.5cm and -0.2cm of s02c] {$\widetilde{\mathbf{S}}_{0}$};
+  \node [below right=-0.5cm and -0.2cm of s13c] {$\widetilde{\mathbf{S}}_{1}$};
+  \node [below right=-0.5cm and -0.2cm of s24c] {$\widetilde{\mathbf{S}}_{2}$};
+
+  \draw [->] (2.0,0) -- node[above] {DWT/} node[below] {DCT} (3.5,0);
+  \draw [->] (7.5,0) -- node[above] {$k$-Means} (9,0);
+
+  \draw [decorate,decoration = {brace,raise=2pt}] (f4.north west) -- (f1.north west) node[above left, pos=0.5] {$m$};;
+  \draw [decorate,decoration = {brace,raise=2pt}] (s04.north west) -- (s01.north west) node[above left, pos=0.5] {$m$};;
+  \draw [decorate,decoration = {brace,raise=2pt}] (s14.north west) -- (s11.north west) node[above left, pos=0.5] {$m$};;
+  \draw [decorate,decoration = {brace,raise=2pt}] (s24.north west) -- (s21.north west) node[above left, pos=0.5] {$m$};;
+  \draw [decorate,decoration = {brace,raise=2pt}] (s02c.north west) -- (s01c.north west) node[above left, pos=0.5] {$k_0$};;
+  \draw [decorate,decoration = {brace,raise=2pt}] (s13c.north west) -- (s11c.north west) node[above left, pos=0.5] {$k_1$};;
+  \draw [decorate,decoration = {brace,raise=2pt}] (s24c.north west) -- (s21c.north west) node[above left, pos=0.5] {$k_2$};;
+
+
+
+\end{tikzpicture}

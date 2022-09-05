@@ -1,0 +1,17 @@
+\tikzstyle{input} = [circle, minimum width=1cm, minimum height=1cm,text centered, draw=black]
+\tikzstyle{ell} = [ellipse, minimum width=1cm, minimum height=1cm,text centered, draw=black]
+\begin{tikzpicture}[node distance=1.5cm]
+    \node (x1) [input] {$x_1$};
+    \node (x2) [input, below=0.6cm of x1] {$x_2$};
+%    \node (dots) [below=0.6cm of x2] {$\vdots$};
+    \node (xn) [input, below=0.6cm of x2] {$x_n$};
+    \node (computation) [ell, right=0.6cm of x2] {$\sum_{i=1}^{n} w_ix_i + b$};
+    \node (f) [input, right=0.6cm of computation] {$f$};
+    \node (y) [input, right=0.6cm of f] {$y$};
+    \draw [->] (x1) -- node[anchor=south] {$w_1$} (computation);
+    \draw [->] (x2) -- node[anchor=south] {$w_2$} (computation);
+    \draw [->] (xn) -- node[anchor=south] {$w_n$} (computation);
+    \draw [->] (computation) -- (f);
+    \draw [->] (f) -- (y);
+    \path (x2) -- (xn) node[pos=0.35] (dots) {$\vdots$};
+\end{tikzpicture}

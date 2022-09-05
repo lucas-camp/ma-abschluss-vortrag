@@ -1,0 +1,9 @@
+\tikzstyle{layer} = [rectangle, minimum width=1cm, minimum height=1cm,text centered, draw=black]
+\begin{tikzpicture}[node distance=1.5cm]
+    \node (l0) [layer] {Schicht ${i-2}$};
+    \node (l1) [layer, below=0.6cm of l0] {Schicht ${i-1}$};
+    \node (l2) [layer, below=0.6cm of l1] {Schicht ${i}$};
+    \draw [->] (l0) -- (l1);
+    \draw [->] (l1) -- (l2);
+    \draw [->] (l0) to[out=0,in=0] (l2);
+\end{tikzpicture}

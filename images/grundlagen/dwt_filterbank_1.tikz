@@ -1,0 +1,26 @@
+\tikzstyle{filter} = [rectangle, minimum width=0.8cm, minimum height=0.8cm,text centered, draw=black]
+\tikzstyle{downsampling} = [circle, minimum width=0.8cm, minimum height=0.8cm,text centered, draw=black]
+\tikzstyle{branch}=[fill,shape=circle,minimum size=4pt,inner sep=0pt]
+\begin{tikzpicture}[node distance=1.5cm]
+    \node (x) {$\mathbf{x}$};
+    \node (h) [filter, right=0.6cm of x] {$h_a$};
+    \node (g) [filter, above right=0.8cm and 0.6cm of x] {$g_a$};
+    \node (dh) [downsampling, right=0.6cm of h] {$\downarrow 2$};
+    \node (dg) [downsampling, right=0.6cm of g] {$\downarrow 2$};
+    \node (d) [right=0.6cm of dh] {$\mathbf{d}$};
+    \node (a) [right=0.6cm of dg] {$\mathbf{a}$};
+
+    \path (x) -- coordinate(branch1) (h);
+
+    \draw [->] (x) -- (h);
+    \draw [->] (h) -- (dh);
+    \draw [->] (dh) -- (d);
+    \draw [->] (g) -- (dg);
+    \draw [->] (dg) -- (a);
+    \draw[->] (branch1) node[branch] {} |- (g);
+    %\draw [->] (x2) -- node[anchor=south] {$w_2$} (computation);
+    %\draw [->] (xn) -- node[anchor=south] {$w_n$} (computation);
+    %\draw [->] (computation) -- (f);
+    %\draw [->] (f) -- (y);
+    %\path (x2) -- (xn) node[pos=0.35] (dots) {$\vdots$};
+\end{tikzpicture}

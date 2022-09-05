@@ -1,0 +1,31 @@
+\tikzstyle{input} = [circle, minimum width=1cm, minimum height=1cm,text centered, draw=black]
+\tikzstyle{ell} = [ellipse, minimum width=1cm, minimum height=1cm,text centered, draw=black]
+\begin{tikzpicture}[node distance=1.5cm]
+    \node (i1) [input] {$x_1$};
+    \node (i2) [input, below=0.4cm of i1] {$x_2$};
+    \node (i3) [input, below=0.4cm of i2] {$x_3$};
+    \node (h1) [input, above right=0.2cm and 2cm of i1] {$h_1$};
+    \node (h2) [input, below=0.4cm of h1] {$h_2$};
+    \node (h3) [input, below=0.4cm of h2] {$h_3$};
+    \node (h4) [input, below=0.4cm of h3] {$h_4$};
+    \node (o) [input, right=4.5cm of i2] {$n_1$};
+    \node (y) [input, right=1.5cm of o] {$y$};
+    \draw [->] (i1) -- (h1);
+    \draw [->] (i1) -- (h2);
+    \draw [->] (i1) -- (h3);
+    \draw [->] (i1) -- (h4);
+    \draw [->] (i2) -- (h1);
+    \draw [->] (i2) -- (h2);
+    \draw [->] (i2) -- (h3);
+    \draw [->] (i2) -- (h4);
+    \draw [->] (i3) -- (h1);
+    \draw [->] (i3) -- (h2);
+    \draw [->] (i3) -- (h3);
+    \draw [->] (i3) -- (h4);
+    \draw [->] (h1) -- (o);
+    \draw [->] (h2) -- (o);
+    \draw [->] (h3) -- (o);
+    \draw [->] (h4) -- (o);
+    \draw [->] (o) -- (y);
+
+\end{tikzpicture}

@@ -2,25 +2,15 @@
 % The theme itself also supports pdflatex
 \PassOptionsToPackage{unicode}{hyperref}
 \documentclass[aspectratio=169, 12pt]{beamer}
+\usepackage[german,english]{babel}
 
 % Load packages you need here
 \usepackage{polyglossia}
 \setmainlanguage{german}
 
 \usepackage{csquotes}
-    
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathtools}
-
-\usepackage{hyperref}
-\usepackage{bookmark}
-
-\usepackage{graphicx}
-\usepackage{wrapfig}
-
-\usepackage[utf8]{inputenc}
+% Tikz plots
 \usepackage{pgfplots}
 % \DeclareUnicodeCharacter{2212}{−}
 \usepgfplotslibrary{groupplots,dateplot}
@@ -45,12 +35,63 @@
     use comma,
     fixed,
     fixed zerofill,
-    precision=1,
+    precision=3,
+    scaled ticks=false,
     /tikz/.cd
   },
   x label style={font=\footnotesize},
   y label style={font=\footnotesize}
 }
+
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usepackage{tikzscale}
+    
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\usepackage[utf8]{inputenc}
+% \usepackage{pgfplots}
+% % \DeclareUnicodeCharacter{2212}{−}
+% \usepgfplotslibrary{groupplots,dateplot}
+% \usetikzlibrary{patterns,shapes.arrows}
+% \pgfplotsset{
+%   compat=newest,
+%   legend style={
+%     font=\scriptsize,
+%   },
+%   x tick label style={
+%     font=\scriptsize,
+%     /pgf/number format/.cd,
+%     use comma,
+%     % fixed,
+%     % fixed zerofill,
+%     % precision=1,
+%     /tikz/.cd
+%   },
+%   y tick label style={
+%     font=\scriptsize,
+%     /pgf/number format/.cd,
+%     use comma,
+%     fixed,
+%     fixed zerofill,
+%     precision=1,
+%     /tikz/.cd
+%   },
+%   x label style={font=\footnotesize},
+%   y label style={font=\footnotesize}
+% }
 % \pgfplotsset{compat=newest}
 
 % load the theme after all packages
@@ -74,6 +115,13 @@
 % Tikz
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
+
+\DeclareMathOperator{\dct}{dct}
+\DeclareMathOperator{\idct}{idct}
+\DeclareMathOperator{\dwt}{dwt}
+\DeclareMathOperator{\idwt}{idwt}
+\DeclareMathOperator{\NSE}{NSE}
+\DeclareMathOperator{\acc}{acc}
 
 \title{Kompression neuronaler Netze mit Hilfe von Wavelet Transformationen}
 \author[L.~Camphausen]{Lucas Camphausen}
@@ -151,7 +199,7 @@
 % --- Stand der Forschung 1
 
 % --- Stand der Forschung 2
-\begin{frame}
+\begin{frame}{Stand der Forschung}
   \begin{itemize}
     \item Weight-Sharing
           \begin{itemize}
@@ -180,13 +228,16 @@
   \tableofcontents[currentsection]
 \end{frame}
 
+% Präteritum
+% ggf überarbeiten
 \begin{frame}{Ziel der Arbeit}
   Ziel der Arbeit ist die Untersuchung der Möglichkeiten neuronale Netze mit Hilfe der Diskreten Wavelet Transformation zu komprimieren.
   Folgende Aspekte sollen betrachtet werden:
   \begin{itemize}
     \item Wie lässt sich durch die DWT eine Kompression erreichen?
     \item Welche Kompressionsraten können erreicht werden?
-    \item Ist es möglich das Netz auf einem Mikrocontroller bare-metal ohne Betriebssystem auszuführen?
+    \item Inwiefern verbessert sich die Situation bei der Ausführung auf einem Mikrocontroller?
+    %\item Ist es möglich das Netz auf einem Mikrocontroller bare-metal ohne Betriebssystem auszuführen?
     \item Genauigkeit und Laufzeit sind nicht immer die kritischen Messgrößen.
     \item Es soll mit der DCT verglichen werden.
   \end{itemize}
@@ -208,24 +259,15 @@
 % \end{frame}
 % --- Grundlagen 1
 
-% --- Grundlagen 2
-\begin{frame}{Vorgehen}
-  \vspace{-0.8cm}
-  \begin{center}
-    \includegraphics[height=5.5cm]{images/Vorgehen2.pdf}
-  \end{center}
-\end{frame}
-% --- Grundlagen 2
-
 % --- DCT 1
 \begin{frame}{Diskrete Kosinus Transformation (DCT)}
   \begin{itemize}
     \item DCT ist eine Transformation aus dem Orts- in den Frequenzbereich.
     \item Eingangssignal wird als Linearkombination von Kosinusfunktionen verschiedener Frequenzen dargestellt.
-    \item Datenpunkte $x_0, ..., x_{N-1}$ sind gegeben.
-    \item DCT Koeffizienten $u_0, ..., u_{N-1}$ werden wie folgt berechnet:
+    \item Datenpunkte $x_0, ..., x_{n-1}$ sind gegeben.
+    \item DCT Koeffizienten $c_0, ..., c_{n-1}$ werden wie folgt berechnet:
           \begin{equation*}
-            u_k = \sum_{n=0}^{N-1} x_n d_k(n) \coloneqq \sum_{n=0}^{N-1} x_n cos\left( \frac{\pi}{N} k \left( n + \frac{1}{2} \right) \right), \qquad k = 0, ..., N-1
+            c_k = \sum_{i=0}^{n-1} x_i C_k(i) \coloneqq \sum_{i=0}^{n-1} x_i f_k cos\left( \frac{\pi}{n} k \left( i + \frac{1}{2} \right) \right), \qquad k = 0, ..., n-1
           \end{equation*}
   \end{itemize}
 \end{frame}
@@ -234,16 +276,17 @@
 % --- DCT 2
 \begin{frame}{DCT Basisfunktionen}
   \begin{wrapfigure}{l}{8cm}
-    \vspace{-1.2cm}
+    \vspace{-1.3cm}
     \resizebox{7.5cm}{!}{%
-      \input{tikz/dct_basis.tex}
+    \includegraphics{images/python/tikz/dct/basis.tikz}
     }
   \end{wrapfigure}
   \leavevmode
+  \vspace{-1.0cm}
   \begin{itemize}
-    \item Basisfunktionen $d_k$ sind \\ Kosinus-Halbwellen.
-    \item Basisfunktionen $d_k$ werden an den \\ Stellen $0, 1, \ldots , N-1$ ausgewertet.
-    \item Verschiebung um $\frac{1}{2}$ sorgt \\ für Invertierbarkeit.
+    \item Basisfunktionen $C_k$ sind \\ Kosinus-Halbwellen.
+    \item Basisfunktionen $C_k$ werden an den \\ Stellen $0, 1, \ldots , N-1$ ausgewertet \\ und sind unabhängig von $x$.
+    \item Verschiebung um $\frac{1}{2}$ sorgt \\ für Invertierbarkeit und Vorfaktoren \\ $f_k$ für Orthonormalität.
   \end{itemize}
 \end{frame}
 % --- DCT 2
@@ -259,12 +302,13 @@
 % --- DWT 1
 \begin{frame}{Wavelets}
   \begin{wrapfigure}{l}{8cm}
-    \vspace{-0.9cm}
+    \vspace{-1.2cm}
     \resizebox{7.5cm}{!}{%
-      \input{tikz/mexican_hat.tex}
+    \includegraphics{images/python/tikz/dwt/mexican_hat_1.tikz}
     }
   \end{wrapfigure}
   \leavevmode
+  \vspace{-1.0cm}
   \begin{itemize}
     \item Wavelet $\psi_{a,b}$ ist eine \\ wellenförmige Funktion.
     \item Wavelets haben lokalen Träger.
@@ -274,60 +318,85 @@
 \end{frame}
 % --- DWT 1
 
-% --- DWT 2
-\begin{frame}{Beispiel}
-  \vspace{-1.5cm}
-  Ein Beispiel ist der sogenannte Mexican-Hat
+\begin{frame}{Wavelets}
+  \begin{wrapfigure}{l}{8cm}
+    \vspace{-1.4cm}
+    \resizebox{7.2cm}{!}{%
+    \includegraphics{images/python/tikz/dwt/mexican_hat_3.tikz}
+    }
+  \end{wrapfigure}
+  \leavevmode
+  \vspace{-1.0cm}
+  Beispiel ist der Mexican-Hat
+  \vspace{1.2cm}
+  % \resizebox{7.5cm}{!}{%
   \begin{small}
     \begin{equation*}
       \psi_{a,b}(t) = \frac{2}{\sqrt{3a}\pi^{1/4}} \left( 1- \left( \frac{t-b}{a} \right)^2 \right) \exp \left( - \frac{\left( t-b \right)^2}{2a^2} \right).
     \end{equation*}
   \end{small}
-  \begin{wrapfigure}{l}{6.5cm}
-    \vspace{-0.6cm}
-    \resizebox{5.4cm}{!}{%
-      \input{tikz/mexican_hat_2.tex}
-    }
-  \end{wrapfigure}
-  \leavevmode
+  % }
   \begin{itemize}
     \item Streckung durch $a<0$
     \item Stauchung durch $a>0$
   \end{itemize}
 \end{frame}
+
+% --- DWT 2
+% \begin{frame}{Beispiel}
+%   \vspace{-1.5cm}
+%   Ein Beispiel ist der sogenannte Mexican-Hat
+%   \begin{small}
+%     \begin{equation*}
+%       \psi_{a,b}(t) = \frac{2}{\sqrt{3a}\pi^{1/4}} \left( 1- \left( \frac{t-b}{a} \right)^2 \right) \exp \left( - \frac{\left( t-b \right)^2}{2a^2} \right).
+%     \end{equation*}
+%   \end{small}
+%   \begin{wrapfigure}{l}{6.5cm}
+%     \vspace{-0.6cm}
+%     \resizebox{5.4cm}{!}{%
+%     \includegraphics{images/python/tikz/dwt/mexican_hat_3.tikz}
+%     }
+%   \end{wrapfigure}
+%   \leavevmode
+%   \begin{itemize}
+%     \item Streckung durch $a<0$
+%     \item Stauchung durch $a>0$
+%   \end{itemize}
+% \end{frame}
 % --- DWT 2
 
 % --- DWT 3
 \begin{frame}{Wavelet Transformation}
-  Die (kontinuierliche) Wavelet Transformation einer Funktion $x(t)$ mit dem Wavelet $\psi_{a, b}$ ist gegeben durch die Faltung
+  Die (kontinuierliche) Wavelet Transformation einer Funktion $f(t)$ mit dem Wavelet $\psi_{a, b}$ ist gegeben durch die Faltung
+  \vspace{-0.4cm}
   \begin{small}
     \begin{equation*}
-      \mathcal{W}_{x, \psi}(a, b) \coloneqq \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} \psi \left( \frac{t-b}{a} \right) x(t) dt.
+      \mathcal{W}_{\psi; f}(a, b) = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} \psi \left( \frac{t-b}{a} \right) f(t) \, \text{d}t.
     \end{equation*}
   \end{small}
   \vspace{-0.35cm}
   \begin{center}
-    \resizebox{0.34\textwidth}{!}{%
-      \input{tikz/wavelet_conv_1.tex}
+    \resizebox{0.39\textwidth}{!}{%
+      \includegraphics{images/python/tikz/dwt/mexican_hat_conv_1.tikz}
     }
     \qquad
-    \resizebox{0.34\textwidth}{!}{%
-      \input{tikz/wavelet_conv_2.tex}
+    \resizebox{0.39\textwidth}{!}{%
+      \includegraphics{images/python/tikz/dwt/mexican_hat_conv_2.tikz}
     }
   \end{center}
 \end{frame}
 % --- DWT 3
 
 % --- DWT 4
-\begin{frame}{Diskrete Wavelet Transformation}
-  Bei der DWT sind das Signal $x[n]$, die Skalierung $a$ und die Translation $b$ diskret.
-  Sie wird durch Faltung von $x[n]$ mit einem Tiefpassfilter $g[n]$ und Hochpassfilter $h[n]$ berechnet:
+\begin{frame}{Diskrete Wavelet Transformation (DWT)}
+  Bei der DWT sind das Signal $x$, die Skalierung $a$ und die Translation $b$ diskret.
+  Sie wird durch Faltung von $x$ mit einem Tiefpassfilter $g_a$ und Hochpassfilter $h_a$ berechnet:
   \begin{itemize}
-    \item Approximationskoeffizienten $a[n] = \left(x*g\right)[n]$
-    \item Detailkoeffizienten $d[n] = \left(x*h\right)[n]$
-    \item $a[n]$ enthält untere Hälfte und $d[n]$ obere Hälfte der Frequenzen.
-    \item In $a[n]$ und $d[n]$ kann jeder zweite Koeffizient entfernt werden (Downsampling), wobei eine exakte Rekonstruktion möglich ist.
-    \item Rekursive Anwendung auf $a[n]$ ist möglich.
+    \item Approximationskoeffizienten $a = \left(x*g_a\right)$
+    \item Detailkoeffizienten $d = \left(x*h_a\right)$
+    \item $a$ enthält untere Hälfte und $d$ obere Hälfte der Frequenzen.
+    \item In $a$ und $d$ kann jeder zweite Koeffizient entfernt werden (Downsampling), wobei eine exakte Rekonstruktion möglich ist.
+    \item Rekursive Anwendung auf $a$ ist möglich.
   \end{itemize}
   % \begin{equation*}
   %   a[n] = \left(x*g\right)[n] = \sum_{k=-\infty}^{\infty}x[k]g[n-k]
@@ -336,23 +405,29 @@
 % --- DWT 4
 
 % --- DWT 5
-\begin{frame}
-  \resizebox{\textwidth}{!}{%
-    \input{tikz/filterbank.tex}
-  }
+\begin{frame}{Mehrstufige DWT}
+  % \resizebox{\textwidth}{!}{%
+  %   \input{tikz/filterbank.tex}
+  % }
+  \begin{center}
+    \resizebox{13cm}{!}{%
+      \includegraphics{images/grundlagen/dwt_filterbank_3.tikz}
+    }
+  \end{center}
 \end{frame}
 % --- DWT 5
 
 % --- kmeans Clustering 1
-\begin{frame}{k-Means-Clustering}
+\begin{frame}{k-Means Clustering}
   \begin{wrapfigure}{r}{7cm}
-    \vspace{-0.5cm}
+    \vspace{-1.5cm}
     \resizebox{7cm}{!}{%
-      \input{tikz/k_means.tex}
+      \includegraphics{images/python/tikz/kmeans/kmeans_pp.tikz}
     }
     % \includegraphics[height=5cm]{images/skizze_kmeans}
   \end{wrapfigure}
   \leavevmode
+  \vspace{-1.0cm}
   \begin{itemize}
     \item Datenpunkte $\symbf{x_j}$ werden in $k$ \\ disjunkte Teilmengen $S_i$ partitioniert.
     \item Summierter quadratischer Fehler zu \\ Clusterzentren $\symbf{\mu_i}$ wird minnimiert
@@ -365,90 +440,614 @@
 % --- kmeans Clustering 1
 
 % === Vorgehen
+% --- Grundlagen 2
+\begin{frame}{Vorgehen}
+  \vspace{-0.8cm}
+  \begin{center}
+    \resizebox{13cm}{!}{%
+      \includegraphics{images/transformationsbasierte_kompression/algorithm.tikz}
+    }
+  \end{center}
+\end{frame}
+% --- Grundlagen 2
+
+% \begin{frame}{Vorgehen}
+%   \begin{itemize}
+%     \item Filter einer Faltungsschicht werden in Vektoren transformiert:
+%     \begin{itemize}
+%       \item jeder Filter separat (z.B. bei $3 \times 3$ Filtern)
+%       \item mehrere Filter werden konkateniert (z.B. bei $1 \times 1$ Filtern)
+%     \end{itemize}
+%     \item Die Vektoren werden mit der DCT/DWT transformiert.
+%     \item Man erhält Koeffizienten verschiedener Subbänder:
+%     \begin{itemize}
+%       \item bei der DWT auf natürliche Art
+%       \item bei der DCT werden die Koeffizienten künstlich gruppiert
+%     \end{itemize}
+%   \item In jedem Subband $S_i$ wird separat ein $k$-Means Clustering durchgeführt mit Paramter $k_i$.
+%   \item Als Parameter erhält man die Koeffizienten der Clusterzentren und Indizes.
+%   \end{itemize}
+% \end{frame}
 
 % === Experiment
-\section{Erstes Experiment}
+\section{Evaluation}
 
 \begin{frame}{Übersicht}
   \tableofcontents[currentsection]
 \end{frame}
 
-% --- Experiment 1
-\begin{frame}{Erstes Experiment}
-  Die Kompressionseigenschaften der DCT und DWT werden an einem einfachen Beispiel untersucht.
+\begin{frame}{Datensätze}
+  Es wurden zwei Datensätze in der Bildklassifikation verwendet:
   \begin{itemize}
-    \item Gewichte einer Faltungsschicht eines trainierten CNNs werden komprimiert.
-    \item Mehrere Filter werden als ein Vektor aufgefasst, um die Signallänge zu erhöhen.
-    \item Diese werden jeweils mittels DCT bzw. DWT transformiert.
-    \item Transformierte werden auf die ersten $n$ (DCT) bzw. betraglich größten $n$ (DWT) \\ Koeffizienten beschränkt.
-    \item Transformationen werden invertiert.
-          % \item Norm des Fehlers
-          % \item erwarten bei gelicher Parameterzahl geringeren Fehler bei DWT
-          % \item bei DWT eine geringe Auswahl von Konfigurationen (Wavelet/Tiefe)
+    \item Fashion-MNIST
+    \begin{itemize}
+      \item Enthält $70000$ Graustufenbilder der Größe $28 \times 28$.
+      \item Enthält $10$ Klassen verschiedener Kleidungsstücke.
+      \item Wurde vom Versandhändler Zalando erstellt.
+      \item Kann als Ersatz für MNIST genutzt werden.
+    \end{itemize}
+  \end{itemize}
+  \begin{figure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_0_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_1_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_2_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_3_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_4_0.png}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_5_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_6_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_7_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_8_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/fashionmnist/fashion_mnist_9_0.png}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item CIFAR-10
+    \begin{itemize}
+      \item Enthält $60000$ Farbbilder der Größe $32 \times 32$.
+      \item Enthält $10$ Klassen verschiedener Tiere und Verkehrsmittel.
+      \item Ist Teilmenge des CIFAR-100 Datensatzes.
+      \item Wurde aus dem 80 Million Tiny Images Datensatz generiert.
+    \end{itemize}
+  \end{itemize}
+  \begin{figure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_0_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_1_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_2_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_3_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_4_0.png}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_5_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_6_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_7_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_8_0.png}
+    \end{subfigure}
+    \begin{subfigure}{1.4cm}
+        \centering
+        \includegraphics{images/datasets/cifar10/cifar_10_9_0.png}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Netzarchitekturen}
+  Es wurden zwei Netzarchitekturen untersucht:
+  \begin{itemize}
+    \item ResNet-20
+    \begin{itemize}
+      \item Erhöhung der Tiefe von Netzen führt zu Problemen.
+      \item Residuenblöcke werden genutzt.
+      \item Hat $271098$ Parameter für CIFAR-10 ($98{,}8\%$ in Faltungsschichten).
+      \item Enthält nur $3 \times 3$ Faltungen.
+    \end{itemize}
+    \item MobileNet v2
+    \begin{itemize}
+      \item Enthält Residuenblöcke mit \glqq Depthwise Convolutions\grqq{}.
+      \item Es folgen $1 \times 1$ Faltungsschichten.
+      \item Enthält $1{,}3$ Mio. Parameter für CIFAR-10 ($95{,}3\%$ in Faltungsschichten).
+    \end{itemize}
   \end{itemize}
 \end{frame}
+
+\begin{frame}{Ausführung auf Mikrocontrollern}
+  Zur Ausführung von TensorFlow Modellen auf Mikrocontrollern stehen unter anderem zwei Alternativen zur Verfügung:
+  \begin{itemize}
+    \item TFLM
+    \begin{itemize}
+      \item TensorFlow Modell wird zunächst in ein TensorFlow Lite Modell konvertiert.
+      \item Aus Clusterzentren und Indizes werden Gewichte der Originalgröße rekonstruiert.
+      % \item Die Kompression geht dabei verloren.
+      \item Im Rahmen der Arbeit daher nicht verwendbar.
+    \end{itemize}
+    \item IREE
+    \begin{itemize}
+      \item Verwendet Compiler Infrastruktur MLIR.
+      \item Transformiert TensorFlow durch viele Konvertierungen in LLVM Code.
+      \item IREE Bare-Metal-Arm zur Ausführung auf Mikrocontrollern mit Arm Prozessoren.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rekonstruktionsfehler}
+  % Zunächst wird der reine Rekonstruktionsfehler der Gewichte untersucht:
+  \begin{itemize}
+    \item Parameter $k_i$ für $k$-Means Clustering werden durch relative Größen $c_i$ ersetzt.
+    \item Transformation in zwei Subbänder (Approximations- und Detailkoeffizienten).
+    \item Originalgewichte $W$ werden mit Parametern $(c_0, c_1)$ komprimiert.
+    \item Gewichte $\widetilde{W}$ werden rekonstruiert.
+    \item Normierter quadratischer Rekonstruktionsfehler gegeben durch
+  \end{itemize}
+  \begin{small}
+    \begin{equation*}
+      \NSE(W, \widetilde{W}) = \frac{\left\lVert \widetilde{W} - W \right\rVert_2^2}{\left\lVert W \right\rVert_2^2}.
+    \end{equation*}
+  \end{small}
+  \begin{itemize}
+    \item Kompressionsfaktor $r$ ist Quotient aus dem Speicherbedarf der Originalparameter und dem der komprimierten Parameter.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{ResNet-20 für CIFAR-10}
+  \begin{itemize}
+    \item Die erste Faltungsschicht des 5. Residuenblocks wird komprimiert.
+    \item Die Schicht hat $32$ Eingabe- und $32$ Ausgabekanäle.
+    \item Dies entspricht $1024$ Filtern der Größe $3 \times 3$.
+    \item Parameter $c_0$ und $c_1$ werden jeweils aus $\left\lbrace 0{,}1; 0{,}2; 0{,}4; 0{,}8 \right\rbrace$ gewählt.
+    \item Größe der Subbänder ist
+  \end{itemize}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{DCT} & \multicolumn{2}{|c|}{DWT[HAAR]} & \multicolumn{2}{|c|}{DWT[DB2]} \\
+        \hline
+        $\left\lvert a \right\rvert$ & $\left\lvert d \right\rvert$ & $\left\lvert a \right\rvert$ & $\left\lvert d \right\rvert$ & $\left\lvert a \right\rvert$ & $\left\lvert d \right\rvert$ \\
+        \hline
+        5 & 4 & 5 & 5 & 6 & 6 \\
+        \hline
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Rekonstruktionsfehler ResNet-20 für Fashion-MNIST}
+  \begin{figure}
+    \resizebox{12.5cm}{!}{%
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/reconstruction_error/cifar_10_resnet_20_47_nse_fixed_c1_0.1.tikz}
+            \caption*{$c_1 = 0{,}1$ fest, $c_0$ variabel}
+        \end{subfigure}
+        \qquad
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/reconstruction_error/cifar_10_resnet_20_47_nse_fixed_c0_0.1.tikz}
+            \caption*{$c_0 = 0{,}1$ fest, $c_1$ variabel}
+        \end{subfigure}
+    }
+    % \caption*{Normierter quadratischer Rekonstruktionsfehler der Gewichte einer Faltungsschicht eines \emph{ResNet-20} für den \emph{CIFAR-10} Datensatz für festes $c_1$ (a) bzw. festes $c_0$ (b) mit einem Wert von $0{,}1$.} 
+\end{figure}
+\end{frame}
+
+\begin{frame}{Rekonstruktionsfehler ResNet-20 für Fashion-MNIST}
+  \begin{wrapfigure}{r}{7cm}
+    \vspace{-1.7cm}
+    % \resizebox{7cm}{!}{
+      \begin{figure}
+        \resizebox{6cm}{!}{
+          \begin{subfigure}{0.5\textwidth}
+            \includegraphics{images/evaluation/reconstruction_error/cifar_10_resnet_20_47_nse_fixed_c0_0.4.tikz}
+            \subcaption*{$c_0 = 0{,}4$ fest, $c_1$ variabel}
+          \end{subfigure}
+        }
+        % \caption*{$c_0 = 0{,}4$ fest, $c_1$ variabel}
+      \end{figure}
+    % }
+    % \includegraphics[height=5cm]{images/skizze_kmeans}
+  \end{wrapfigure}
+  \leavevmode
+  \vspace{-1.0cm}
+  \begin{itemize}
+    \item Rekonstruktionsfehler ist für DCT am geringsten und für DB2 Wavelets am höchsten.
+    \item Approximationskoeffizienten haben größeren Einfluss auf den Fehler als Detailkoeffizienten.
+    \item Detailkoeffizienten können nicht gänzlich vernachlässigt werden.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Klassifikationsgenauigkeit ResNet-20 für Fashion-MNIST}
+  % Zunächst wird der reine Rekonstruktionsfehler der Gewichte untersucht:
+  \begin{itemize}
+    \item Parameter und Kompressionsfaktor werden wie zuvor definiert.
+    \item Alle Schichten werden mit dem selben Parameterpaar $(c_0, c_1)$ komprimiert.
+    \item Das Netz wird für $20$ Epochen nachtrainiert.
+    \item Parameter $c_0$ und $c_1$ werden jeweils aus $\left\lbrace 0{,}025; 0{,}05; 0{,}1; 0{,}2; 0{,}4; 0{,}8; 1{,}0 \right\rbrace$ gewählt.
+    \item Genauigkeit des Originalnetzes liegt bei $94{,}7\%$.
+    % \item Es werden hohhe Kompressionsraten ohne nennenswerten Genauigkeitsverlust erreicht.
+    % \item Auch hier sind Approximationskoeffizienten von größerer Wichtigkeit.
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Klassifikationsgenauigkeit ResNet-20 für Fashion-MNIST}
+  \begin{figure}
+    \resizebox{12cm}{!}{%
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/accuracy/fashion_mnist_resnet_20_fine_tuned_accuracy_fixed_c1_0.05.tikz}
+            \caption*{$c_1 = 0{,}05$ fest, $c_0$ variabel}
+        \end{subfigure}
+        \qquad
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/accuracy/fashion_mnist_resnet_20_fine_tuned_accuracy_fixed_c0_0.05.tikz}
+            \caption*{$c_0 = 0{,}05$ fest, $c_1$ variabel}
+        \end{subfigure}
+    }
+    % \caption*{Normierter quadratischer Rekonstruktionsfehler der Gewichte einer Faltungsschicht eines \emph{ResNet-20} für den \emph{CIFAR-10} Datensatz für festes $c_1$ (a) bzw. festes $c_0$ (b) mit einem Wert von $0{,}1$.} 
+\end{figure}
+\end{frame}
+
+\begin{frame}{Klassifikationsgenauigkeit MobileNet v2 für CIFAR-10}
+  % Zunächst wird der reine Rekonstruktionsfehler der Gewichte untersucht:
+  \begin{itemize}
+    \item Genauigkeit des Originalnetzes liegt bei $89{,}4\%$.
+    \item Parameter $c_0$ und $c_1$ werden jeweils aus $\left\lbrace 0{,}025; 0{,}05; 0{,}1; 0{,}2 \right\rbrace$ gewählt.
+    \item Speicherbedarf während des Trainigs sehr hoch:
+    \begin{itemize}
+      \item 32${\,}$GB einer Tesla Grafikkarte reichen nicht aus für größere Werte von $c_0$ und $c_1$
+    \end{itemize}
+  \item Parameterraum wird nur teilweise abgedeckt.
+  % \item Genauigkeit des Originalnetzes kann nicht erreicht werden:
+  % \begin{itemize}
+  %   \item Kompressionsfaktor von etwa 3 jedoch Genauigkeitsverlust von 5 Prozentpunkten
+  % \end{itemize}
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Klassifikationsgenauigkeit MobileNet v2 für CIFAR-10}
+  \begin{figure}
+    \resizebox{12cm}{!}{%
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/accuracy/cifar_10_mobilenet_v2_filterwise_or_vector8_fine_tuned_accuracy_fixed_c1_0.2.tikz}
+            \caption*{$c_1 = 0{,}2$ fest, $c_0$ variabel}
+        \end{subfigure}
+        \qquad
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/accuracy/cifar_10_mobilenet_v2_filterwise_or_vector8_fine_tuned_accuracy_fixed_c0_0.2.tikz}
+            \caption*{$c_0 = 0{,}2$ fest, $c_1$ variabel}
+        \end{subfigure}
+    }
+    % \caption*{Normierter quadratischer Rekonstruktionsfehler der Gewichte einer Faltungsschicht eines \emph{ResNet-20} für den \emph{CIFAR-10} Datensatz für festes $c_1$ (a) bzw. festes $c_0$ (b) mit einem Wert von $0{,}1$.} 
+\end{figure}
+\end{frame}
+
+\begin{frame}{Klassifikationsgenauigkeit MobileNet v2 für CIFAR-10}
+  \begin{wrapfigure}{r}{7cm}
+    \vspace{-1.7cm}
+    % \resizebox{7cm}{!}{
+      \begin{figure}
+        \resizebox{6cm}{!}{
+          \begin{subfigure}{0.5\textwidth}
+            \includegraphics{images/evaluation/accuracy/cifar_10_mobilenet_v2_filterwise4_or_vector32_fine_tuned_accuracy_fixed_c0_0.8.tikz}
+            \subcaption*{$c_0 = 0{,}8$ fest, $c_1$ variabel}
+          \end{subfigure}
+        }
+        % \caption*{$c_0 = 0{,}4$ fest, $c_1$ variabel}
+      \end{figure}
+    % }
+    % \includegraphics[height=5cm]{images/skizze_kmeans}
+  \end{wrapfigure}
+  \leavevmode
+  \vspace{-1.0cm}
+  \begin{itemize}
+    \item Ressourcenbedarf für das \\ Training kann durch Konkatenation von mehr Filtern gesenkt werden.
+    \item Parameterraum kann \\ im Gesamten abgesucht werden.
+    \item Es wird keine nennenswerte \\ Kompression erreicht.
+    \item Gittersuche ist bei diesem \\ Netz so nicht zielführend.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Komprimierbarkeit einzelner Schichten}
+  % Zunächst wird der reine Rekonstruktionsfehler der Gewichte untersucht:
+  \begin{itemize}
+    \item Es ist nicht zu erwawrten, dass sich alle Faltungsschichten gleich gut komprimieren lassen.
+    \item Gittersuche ist sehr rechenaufwendig.
+    \item Wie lassen sich gezielter geeignete Parameter einzelner Schichten identifizieren?
+    \begin{itemize}
+      \item Komprimiere jeweils nur eine Schicht bei der Gittersuche.
+      \item \glqq Freeze\grqq{} die übrigen Schichten.
+      \item Dies ist deutlich ressourcenschonender und schneller.
+      \item Wähle die kleinsten Kompressionsparameter, sodass eine Schranke für den Genauigkeitsverlust $\Delta \acc$ nicht überschritten wird.
+    \end{itemize}
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Absolute Speichergröße MobileNet v2 für CIFAR-10}
+  \vspace{0.2cm}
+  \begin{figure}
+    \resizebox{13cm}{!}{%
+      \includegraphics{images/evaluation/layerwise/cifar_10_mobilenet_v2_absolute_uncompressed.tikz}
+    }
+    \caption*{Absolute Speichergröße der Faltungsschichten.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Relative Speichergröße MobileNet v2 für CIFAR-10}
+  \vspace{0.2cm}
+  \begin{figure}
+    \resizebox{13cm}{!}{%
+      \includegraphics{images/evaluation/layerwise/cifar_10_mobilenet_v2_DCT_relative_0.0025.tikz}
+    }
+    \caption*{Relative Speichergröße der Faltungsschichten für $\Delta \acc = 0{,}0025$.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Adaptive Kompression MobileNet v2 für CIFAR-10}
+  \begin{table}[H]
+    \centering
+    % \caption{Genauigkeiten und Kompressionsfaktoren für ein \emph{MobileNet v2} für den \emph{CIFAR-10} Datensatz für verschiedene maximale Genauigkeitsverluste $\Delta\acc$ und Transformationen.}
+    % \label{table_evaluation_layerwise_cifar10_mobilenet}
+    \begin{tabular}{|l|ll|ll|}
+    \hline
+           & \multicolumn{2}{l|}{\textbf{DCT}}             & \multicolumn{2}{l|}{\textbf{DWT{[}HAAR{]}}}   \\ \hline
+    $\Delta\text{acc}$    & \multicolumn{1}{l|}{$\acc$} & $r$  & \multicolumn{1}{l|}{$\acc$} & $r$  \\ \hline
+    $0{,}0025$ & \multicolumn{1}{l|}{$86{,}15\%$}  & $4{,}93$ & \multicolumn{1}{l|}{$86{,}31\%$}  & $4{,}97$  \\ \hline
+    $0{,}005$  & \multicolumn{1}{l|}{$84{,}31\%$}  & $5{,}34$ & \multicolumn{1}{l|}{$84{,}5\%$}   & $5{,}33$ \\ \hline
+    \end{tabular}
+\end{table}
+\pause
+\begin{itemize}
+  \item Klassifikationsgenauigkeit ist höher als bei der Gittersuche.
+  \item Es wird Kompressiosnfaktor 5 statt 3 erreicht.
+  \item Verfahren erlaubt feinere Parametersuche.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Firmwaregröße}
+  \begin{itemize}
+    \item Für die Ausführung auf Mikrocontrollern darf die Firmwaregröße den Flash Speicher des Controllers nicht übersteigen.
+    \item Dieser liegt bei STM32 Nucleo Boards im Bereich bis etwa 2$\,$MB.
+    \item Setzt sich zusammen aus:
+    \begin{itemize}
+      \item Initialisierung des Mikrocontrollers
+      \item IREE Runtime
+      \item Gewichte und Code zur Ausführung (Netzschichten, inverse DCT/DWT)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Firmwaregröße ResNet-20 für Fashion-MNIST}
+  \begin{figure}
+    \resizebox{12cm}{!}{%
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/binary_size/fashion_mnist_resnet_20_filterwise_or_vector8_acc_vs_filesize_fixed_c0_0.05.tikz}
+            \caption*{$c_0 = 0{,}2$ fest, $c_1$ variabel}
+        \end{subfigure}
+        \qquad
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/evaluation/binary_size/fashion_mnist_resnet_20_filterwise_or_vector8_filesize_vs_compression_fixed_c0_0.2.tikz}
+            \caption*{$c_0 = 0{,}2$ fest, $c_1$ variabel}
+        \end{subfigure}
+    }
+    % \caption*{Normierter quadratischer Rekonstruktionsfehler der Gewichte einer Faltungsschicht eines \emph{ResNet-20} für den \emph{CIFAR-10} Datensatz für festes $c_1$ (a) bzw. festes $c_0$ (b) mit einem Wert von $0{,}1$.} 
+\end{figure}
+\end{frame}
+
+\begin{frame}{Firmwaregröße MobileNet v2 für CIFAR-10}
+  \begin{table}[H]
+    \centering
+    % \caption{Genauigkeiten und Firmwaregrößen (FW-Größe) in Kilobytes für verschieden komprimierte \emph{MobileNet v2} für den \emph{CIFAR-10} Datensatz. Verglichen werden das unkomprimierte Netz (a), ein in allen Faltungsschichten gleich komprimiertes Netz (b) und ein adaptiv komprimiertes Netz (c) (vgl. Abschnitt \ref{layer_compressing}).}
+    % \label{table_evaluation_file_size_cifar_10_mobilenet}
+    \begin{tabular}{|c|cc|cc|}
+        \hline
+                                        & \multicolumn{2}{c|}{\textbf{DCT}}                                            & \multicolumn{2}{c|}{\textbf{DWT{[}HAAR{]}}}                                  \\ \hline
+        \textbf{Konfiguration}          & \multicolumn{1}{c|}{\textbf{$\text{acc}$}} & \textbf{FW-Größe {[}kB{]}} & \multicolumn{1}{c|}{\textbf{$\text{acc}$}} & \textbf{FW-Größe {[}kB{]}} \\ \hline
+        unkomprimiert               & \multicolumn{1}{c|}{$89{,}36\%$}           & $5701{,}71$                     & \multicolumn{1}{c|}{$89{,}36\%$}           & $5701{,}71$                     \\ \hline
+        $c_0=0{,}2, c_1=0{,}2$      & \multicolumn{1}{c|}{$84{,}96\%$}           & $2325{,}14$                     & \multicolumn{1}{c|}{$84{,}63\%$}           & $2425{,}57$                     \\ \hline
+        $\Delta\text{acc}=0{,}0025$ & \multicolumn{1}{c|}{$86{,}15\%$}           & $1510{,}78$                     & \multicolumn{1}{c|}{$86{,}31\%$}           & $1601{,}89$                     \\ \hline
+        \end{tabular}
+\end{table}
+\pause
+\begin{itemize}
+  \item Deutliche Reduzierung der Firmwaregröße wird erzielt.
+  \item Verläuft u.A. wegen IREE Runtime nicht linear zum Kompressionsfaktor.
+  % \item 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Arbeitsspeicherbedarf}
+  \begin{itemize}
+    \item Auch der verfügbare Arbeitsspeicher ist ein limitierender Faktor.
+    \item Die Gewichte einer Faltungsschicht werden vollständig rekonstruiert.
+    \item Es hat sich gezeigt, dass der Arbeitsspeicherbedarf deutlich ansteigt.
+    \item Probleme liegen teilweise in der Verwendung von IREE.
+    \item Die Netze wurden mit dem Emulator Renode ausgeführt.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Arbeitsspeicherverbrauch MobileNet v2 für CIFAR-10}
+  \begin{table}[H]
+    \centering
+    % \caption{Maximaler Arbeitsspeicherverbrauch in Kilobytes für verschieden komprimierte \emph{MobileNet v2} für den \emph{CIFAR-10} Datensatz. Verglichen werden das unkomprimierte Netz (a), in allen Faltungsschichten gleich komprimierte Netze (b) und ein adaptiv komprimiertes Netz (c) (vgl. Abschnitt \ref{layer_compressing}).}
+    % \label{table_evaluation_peak_memory_cifar_10_mobilenet}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Konfiguration}          & \textbf{DCT} & \textbf{DWT{[}HAAR{]}} \\ \hline
+        unkomprimiert               & $2390{,}29$  & $2390{,}29$            \\ \hline
+        gleich in allen Schichten   & $4915{,}91$  & $12587{,}29$           \\ \hline
+        $\Delta\text{acc}=0{,}0025$ & $6205{,}16$  & $12388{,}60$           \\ \hline
+        \end{tabular}
+\end{table}  
+\pause
+\begin{itemize}
+  \item Deutlich mehr Arbeitsspeicherbedarf bei Verwendung der DWT
+  \item Es werden nicht alle TensorFlow Operationen unterstützt (z.B. transposed convolution, inplace updates).
+  % \item Erweiterung von IREE wäre nötig (nicht trivial).
+  \item Ersetzung dieser Konstrukte auf TensorFlow Ebene durch ineffiziente Implementierungen (stacking von Tensoren, $\ldots$).
+\end{itemize}
+\end{frame}
+
+
+% --- Experiment 1
+% \begin{frame}{Erstes Experiment}
+%   Die Kompressionseigenschaften der DCT und DWT werden an einem einfachen Beispiel untersucht.
+%   \begin{itemize}
+%     \item Gewichte einer Faltungsschicht eines trainierten CNNs werden komprimiert.
+%     \item Mehrere Filter werden als ein Vektor aufgefasst, um die Signallänge zu erhöhen.
+%     \item Diese werden jeweils mittels DCT bzw. DWT transformiert.
+%     \item Transformierte werden auf die ersten $n$ (DCT) bzw. betraglich größten $n$ (DWT) \\ Koeffizienten beschränkt.
+%     \item Transformationen werden invertiert.
+%           % \item Norm des Fehlers
+%           % \item erwarten bei gelicher Parameterzahl geringeren Fehler bei DWT
+%           % \item bei DWT eine geringe Auswahl von Konfigurationen (Wavelet/Tiefe)
+%   \end{itemize}
+% \end{frame}
 % --- Experiment 1
 
 % --- Experiment 2
-\begin{frame}
-  \begin{wrapfigure}{l}{8cm}
-    \vspace{-0.8cm}
-    \resizebox{7.8cm}{!}{%
-      \input{tikz/haar.tex}
-    }
-  \end{wrapfigure}
-  \leavevmode
-  \begin{itemize}
-    \item Gewichte $W$ einer Faltungsschicht \\ aus einem ResNet18
-    \item 512 Filter der Größe $3 \times 3$
-    \item Gruppierung von jeweils \\ 4 Filtern zu 128 Vektoren der \\ Länge 36
-    \item Haar Wavelet für die DWT
-    \item Nur 2 Subbänder $a_0$ und $d_0$ (Level 1)
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \begin{wrapfigure}{l}{8cm}
+%     \vspace{-0.8cm}
+%     \resizebox{7.8cm}{!}{%
+%       \input{tikz/haar.tex}
+%     }
+%   \end{wrapfigure}
+%   \leavevmode
+%   \begin{itemize}
+%     \item Gewichte $W$ einer Faltungsschicht \\ aus einem ResNet18
+%     \item 512 Filter der Größe $3 \times 3$
+%     \item Gruppierung von jeweils \\ 4 Filtern zu 128 Vektoren der \\ Länge 36
+%     \item Haar Wavelet für die DWT
+%     \item Nur 2 Subbänder $a_0$ und $d_0$ (Level 1)
+%   \end{itemize}
+% \end{frame}
 % --- Experiment 2
 
 % --- Experiment 3
-\begin{frame}
-  \begin{wrapfigure}{l}{8cm}
-    \vspace{-0.8cm}
-    \resizebox{7.8cm}{!}{%
-      \input{tikz/experiment_1.tex}
-    }
-  \end{wrapfigure}
-  \leavevmode
-  \begin{itemize}
-    \item $dct(W; n)$ ist DCT Transformierte \\ mit ersten n Koeffizienten
-    \item $dwt(W; n)$ ist DWT Transformierte \\ mit betraglich n größten \\ Koeffizienten
-    \item $e_{\mathcal{T}}(n) = W - \mathcal{T}^{-1}(\mathcal{T}(W; n))$
-          % \item $e_{dwt}(n) = W - idwt(dwt(W; n))$
-    \item $e_{rel}(n) = \frac{\lVert e_{\mathcal{T}}(n) \rVert}{\lVert W \rVert}$
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \begin{wrapfigure}{l}{8cm}
+%     \vspace{-0.8cm}
+%     \resizebox{7.8cm}{!}{%
+%       \input{tikz/experiment_1.tex}
+%     }
+%   \end{wrapfigure}
+%   \leavevmode
+%   \begin{itemize}
+%     \item $dct(W; n)$ ist DCT Transformierte \\ mit ersten n Koeffizienten
+%     \item $dwt(W; n)$ ist DWT Transformierte \\ mit betraglich n größten \\ Koeffizienten
+%     \item $e_{\mathcal{T}}(n) = W - \mathcal{T}^{-1}(\mathcal{T}(W; n))$
+%           % \item $e_{dwt}(n) = W - idwt(dwt(W; n))$
+%     \item $e_{rel}(n) = \frac{\lVert e_{\mathcal{T}}(n) \rVert}{\lVert W \rVert}$
+%   \end{itemize}
+% \end{frame}
 % --- Experiment 3
 % === Experiment
 
 % === Ausblick
-\section{Ausblick}
+\section{Zusammenfassung und Ausblick}
 
-\begin{frame}{Ausblick}
+\begin{frame}{Übersicht}
   \tableofcontents[currentsection]
 \end{frame}
 
 % --- Ausblick 1
-\begin{frame}{Ausblick}
-  Neben den in der Motivation genannten Punkten sollen folgende Fragestellungen untersucht werden:
+% \begin{frame}{Ausblick}
+%   Neben den in der Motivation genannten Punkten sollen folgende Fragestellungen untersucht werden:
+%   \begin{itemize}
+%     \item Wie führt man das komprimierte Netz auf der Zielplattform aus?
+%           \begin{itemize}
+%             \item Die Rücktransformation aller Schichten zur selben Zeit ist nicht sinnvoll.
+%             \item Gewichte können schichtweise rekonstruiert werden.
+%           \end{itemize}
+%     \item Wie werden sinnvolle Parameter (z.B. $k$ in $k$-Means) identifiziert?
+%     \item Können verschiedene Schichten sinnvoll gemeinsam geclustert werden?
+%   \end{itemize}
+% \end{frame}
+% --- Ausblick 1
+
+\begin{frame}{Zusammenfassung und Ausblick}
   \begin{itemize}
-    \item Wie führt man das komprimierte Netz auf der Zielplattform aus?
-          \begin{itemize}
-            \item Die Rücktransformation aller Schichten zur selben Zeit ist nicht sinnvoll.
-            \item Gewichte können schichtweise rekonstruiert werden.
-          \end{itemize}
-    \item Wie werden sinnvolle Parameter (z.B. $k$ in $k$-Means) identifiziert?
-    \item Können verschiedene Schichten sinnvoll gemeinsam geclustert werden?
+    \item Verfahren ist geeignet, um CNNs zu komprimieren.
+    \item Ressourcenbedarf für Gittersuche ist hoch.
+    \item Adaptives Verfahren liefert höhere Kompression bei gleicher Genauigkeit.
+    \item Firmwaregröße kann deutlich reduziert werden.
+    \item Zur Ausführung benötigter Arbeitsspeicher ist bislanf limitierender Faktor.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Zusammenfassung und Ausblick}
+  \begin{itemize}
+    \item Optimierung des Arbeitsspeicherbedarfs kann geschehen durch:
+    \begin{itemize}
+      \item Implementierung der fehlenden "Conversions"
+      \item spezialisierten Compilerpfad
+    \end{itemize}
+    \item Linearität von Faltung und DCT/DWT kann ausgenutzt werden.
+    \item Teilergebnisse können bei gleichen Indizes wiederverwendet werden.
+    \item Vergleich mit anderen Kompressionsverfahren (Quantisierung, Pruning etc.)
   \end{itemize}
 \end{frame}
-% --- Ausblick 1
 
 % === Ausblick
 \end{document}

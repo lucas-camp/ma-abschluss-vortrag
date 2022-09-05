@@ -1,0 +1,49 @@
+\definecolor{custom_red}{RGB}{255,166,166}
+\definecolor{custom_green}{RGB}{166,255,166}
+\definecolor{custom_blue}{RGB}{166,166,255}
+\definecolor{custom_grey}{RGB}{192,192,192}
+
+\tikzstyle{grey} = [fill=custom_grey, opacity=1.0, text opacity=1]
+\tikzstyle{red} = [fill=custom_red, opacity=1.0, text opacity=1]
+\tikzstyle{blue} = [fill=custom_blue, opacity=1.0, text opacity=1]
+\tikzstyle{green} = [fill=custom_green, opacity=1.0, text opacity=1]
+
+\tikzstyle{downsampling} = [circle, minimum width=3mm, minimum height=3mm,text centered, draw=black]
+
+\begin{tikzpicture}[scale=1.0]
+
+  \matrix (x2) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=7.5pt, xshift=0pt]
+  {
+    \node [grey, align=left, text depth=10mm, text width=12mm] {$\mathbf{x}_2$}; \\
+  };
+
+  \matrix (x1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=-7.5pt, xshift=-15pt]
+  {
+    \node [grey, align=left, text depth=10mm, text width=12mm] {$\mathbf{x}_1 + \mathbf{x}_3$}; \\
+  };
+
+  %% Filter
+  \matrix (w2) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=8mm, yshift=7.5pt, xshift=120pt]
+  {
+    \node [green, align=left, text depth=4mm, text width=6mm] {$\mathbf{w}_2$}; \\
+  };
+
+  \matrix (w1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=8mm, yshift=-7.5pt, xshift=105pt]
+  {
+    \node [red, align=left, text depth=4mm, text width=6mm] {$\mathbf{w}_1$}; \\
+  };
+
+  \node (plus) [downsampling, right=12mm of w2, yshift=-7.5pt] {$+$};
+
+  \matrix (y1) [nodes=draw,column sep=-0.2mm, row sep=-0.2mm, minimum size=15mm, yshift=0pt, xshift=240pt]
+  {
+    \node [grey, align=left, text depth=10mm, text width=12mm] {$\mathbf{y}_1$}; \\
+  };
+
+  \draw [->] ([yshift=-5mm]x1.east) -- ([yshift=1mm]w1.west) node[above, pos=0.5] {$\ast$};
+  \draw [->] ([yshift=-5mm]x2.east) -- ([yshift=1mm]w2.west) node[above, pos=0.5] {$\ast$};
+  \draw [->] ([yshift=-1mm]w1.east) -- ([yshift=-2mm]plus.west);
+  \draw [->] ([yshift=-1mm]w2.east) -- ([yshift=2mm]plus.west);
+  \draw [->] (plus.east) -- (y1.west);
+
+\end{tikzpicture}

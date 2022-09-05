@@ -1,0 +1,420 @@
+{
+  "layer0_conv": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer1.0_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer1.0_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer1.1_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer1.1_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer1.2_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer1.2_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer2.0_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer2.0_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer2.1_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer2.1_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer2.2_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer2.2_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer3.0_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer3.0_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer3.1_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer3.1_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer3.2_conv0": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "resnet_layer3.2_conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  }
+}

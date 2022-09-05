@@ -1,0 +1,50 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{forestgreen4416044}{RGB}{44,160,44}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=lightgray204},
+tick align=outside,
+tick pos=left,
+x grid style={darkgray176},
+xlabel={\(\displaystyle r\)},
+xmin=0.79052083, xmax=2.08243897,
+xtick style={color=black},
+y grid style={darkgray176},
+ylabel={\(\displaystyle NSE\)},
+ymin=-0.00259018, ymax=0.10952907,
+ytick style={color=black}
+]
+\addplot [semithick, steelblue31119180, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+2.02371542 0.08548517
+1.73233083 0.05005549
+1.45248227 0.02006278
+1.09779631 0.00250615
+};
+\addlegendentry{DCT}
+\addplot [semithick, darkorange25512714, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+1.71524288 0.10443274
+1.50122170 0.05739637
+1.28643216 0.02360776
+1.00021706 0.00285516
+};
+\addlegendentry{DWT[HAAR]}
+\addplot [semithick, forestgreen4416044, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+1.46425167 0.09931856
+1.28679140 0.05928811
+1.09818875 0.02631906
+0.84924438 0.00389010
+};
+\addlegendentry{DWT[DB2]}
+\end{axis}
+
+\end{tikzpicture}

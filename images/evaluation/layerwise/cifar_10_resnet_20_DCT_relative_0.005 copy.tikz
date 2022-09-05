@@ -1,0 +1,81 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+height=6cm,
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=lightgray204},
+tick align=outside,
+tick pos=left,
+x grid style={darkgray176},
+xlabel={convolutional layer},
+xmin=-5.60000000, xmax=95.60000000,
+xtick style={color=black},
+xmajorticks=false,
+y grid style={darkgray176},
+ylabel={relative size},
+ymin=0.00000000, ymax=1.05000000,
+ytick style={color=black},
+y tick label style={
+    font=\scriptsize,
+    /pgf/number format/.cd,
+    use comma,
+    fixed,
+    fixed zerofill,
+    precision=1,
+    scaled ticks=false,
+    /tikz/.cd
+  },
+]
+\draw[draw=none,fill=steelblue31119180] (axis cs:-1.00000000,0.00000000) rectangle (axis cs:1.00000000,1.00000000);
+\addlegendimage{ybar,ybar legend,draw=none,fill=steelblue31119180}
+\addlegendentry{uncompressed weights}
+
+\draw[draw=none,fill=steelblue31119180] (axis cs:4.00000000,0.00000000) rectangle (axis cs:6.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:9.00000000,0.00000000) rectangle (axis cs:11.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:14.00000000,0.00000000) rectangle (axis cs:16.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:19.00000000,0.00000000) rectangle (axis cs:21.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:24.00000000,0.00000000) rectangle (axis cs:26.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:29.00000000,0.00000000) rectangle (axis cs:31.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:34.00000000,0.00000000) rectangle (axis cs:36.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:39.00000000,0.00000000) rectangle (axis cs:41.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:44.00000000,0.00000000) rectangle (axis cs:46.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:49.00000000,0.00000000) rectangle (axis cs:51.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:54.00000000,0.00000000) rectangle (axis cs:56.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:59.00000000,0.00000000) rectangle (axis cs:61.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:64.00000000,0.00000000) rectangle (axis cs:66.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:69.00000000,0.00000000) rectangle (axis cs:71.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:74.00000000,0.00000000) rectangle (axis cs:76.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:79.00000000,0.00000000) rectangle (axis cs:81.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:84.00000000,0.00000000) rectangle (axis cs:86.00000000,1.00000000);
+\draw[draw=none,fill=steelblue31119180] (axis cs:89.00000000,0.00000000) rectangle (axis cs:91.00000000,1.00000000);
+\draw[draw=none,fill=darkorange25512714] (axis cs:-1.00000000,0.00000000) rectangle (axis cs:1.00000000,0.45138889);
+\addlegendimage{ybar,ybar legend,draw=none,fill=darkorange25512714}
+\addlegendentry{compressed weights}
+
+\draw[draw=none,fill=darkorange25512714] (axis cs:4.00000000,0.00000000) rectangle (axis cs:6.00000000,0.12022569);
+\draw[draw=none,fill=darkorange25512714] (axis cs:9.00000000,0.00000000) rectangle (axis cs:11.00000000,0.09201389);
+\draw[draw=none,fill=darkorange25512714] (axis cs:14.00000000,0.00000000) rectangle (axis cs:16.00000000,0.12022569);
+\draw[draw=none,fill=darkorange25512714] (axis cs:19.00000000,0.00000000) rectangle (axis cs:21.00000000,0.10243056);
+\draw[draw=none,fill=darkorange25512714] (axis cs:24.00000000,0.00000000) rectangle (axis cs:26.00000000,0.20963542);
+\draw[draw=none,fill=darkorange25512714] (axis cs:29.00000000,0.00000000) rectangle (axis cs:31.00000000,0.12022569);
+\draw[draw=none,fill=darkorange25512714] (axis cs:34.00000000,0.00000000) rectangle (axis cs:36.00000000,0.11284722);
+\draw[draw=none,fill=darkorange25512714] (axis cs:39.00000000,0.00000000) rectangle (axis cs:41.00000000,0.09407552);
+\draw[draw=none,fill=darkorange25512714] (axis cs:44.00000000,0.00000000) rectangle (axis cs:46.00000000,0.07996962);
+\draw[draw=none,fill=darkorange25512714] (axis cs:49.00000000,0.00000000) rectangle (axis cs:51.00000000,0.07996962);
+\draw[draw=none,fill=darkorange25512714] (axis cs:54.00000000,0.00000000) rectangle (axis cs:56.00000000,0.09407552);
+\draw[draw=none,fill=darkorange25512714] (axis cs:59.00000000,0.00000000) rectangle (axis cs:61.00000000,0.07996962);
+\draw[draw=none,fill=darkorange25512714] (axis cs:64.00000000,0.00000000) rectangle (axis cs:66.00000000,0.14973958);
+\draw[draw=none,fill=darkorange25512714] (axis cs:69.00000000,0.00000000) rectangle (axis cs:71.00000000,0.12207031);
+\draw[draw=none,fill=darkorange25512714] (axis cs:74.00000000,0.00000000) rectangle (axis cs:76.00000000,0.12207031);
+\draw[draw=none,fill=darkorange25512714] (axis cs:79.00000000,0.00000000) rectangle (axis cs:81.00000000,0.08045790);
+\draw[draw=none,fill=darkorange25512714] (axis cs:84.00000000,0.00000000) rectangle (axis cs:86.00000000,0.11930339);
+\draw[draw=none,fill=darkorange25512714] (axis cs:89.00000000,0.00000000) rectangle (axis cs:91.00000000,0.08045790);
+\end{axis}
+
+\end{tikzpicture}

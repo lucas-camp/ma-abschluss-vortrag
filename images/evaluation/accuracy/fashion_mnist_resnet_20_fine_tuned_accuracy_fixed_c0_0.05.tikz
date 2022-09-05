@@ -1,0 +1,72 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{crimson2143940}{RGB}{214,39,40}
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{forestgreen4416044}{RGB}{44,160,44}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+legend cell align={left},
+legend style={
+  fill opacity=0.8,
+  draw opacity=1,
+  text opacity=1,
+  at={(0.03000000,0.03000000)},
+  anchor=south west,
+  draw=lightgray204
+},
+tick align=outside,
+tick pos=left,
+x grid style={darkgray176},
+xlabel={\(\displaystyle r\)},
+xmin=0.64067412, xmax=8.54584341,
+xtick style={color=black},
+y grid style={darkgray176},
+ylabel={acc},
+ymin=0.93000000, ymax=0.95000000,
+ytick style={color=black}
+]
+\addplot [semithick, steelblue31119180, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+8.18651753 0.93820000
+6.46324582 0.94270003
+5.43336945 0.94499999
+4.10430117 0.94620001
+2.82682672 0.94660002
+1.74082693 0.94660002
+1.46135748 0.94720000
+};
+\addlegendentry{DCT}
+\addplot [semithick, darkorange25512714, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+7.83729814 0.93400002
+6.24360216 0.94120002
+5.27730143 0.94250000
+4.01461694 0.94660002
+2.78399161 0.94819999
+1.72448707 0.94669998
+1.44982547 0.94739997
+};
+\addlegendentry{DWT[HAAR]}
+\addplot [semithick, forestgreen4416044, mark=x, mark size=3.00000000, mark options={solid}]
+table {%
+7.36657418 0.93080002
+5.84625016 0.93809998
+4.85757848 0.94239998
+3.61745612 0.94580001
+2.44815491 0.94709998
+1.48586070 0.94709998
+1.24248708 0.94709998
+};
+\addlegendentry{DWT[DB2]}
+\addplot [semithick, crimson2143940, mark=asterisk, mark size=3.00000000, mark options={solid}]
+table {%
+1.00000000 0.94690001
+};
+\addlegendentry{Original}
+\end{axis}
+
+\end{tikzpicture}

@@ -1,0 +1,21 @@
+\tikzstyle{filter} = [rectangle, minimum width=0.8cm, minimum height=0.8cm,text centered, draw=black]
+\tikzstyle{downsampling} = [circle, minimum width=0.8cm, minimum height=0.8cm,text centered, draw=black]
+\tikzstyle{branch}=[fill,shape=circle,minimum size=4pt,inner sep=0pt]
+\begin{tikzpicture}[node distance=1.5cm]
+    \node (d) {$\mathbf{d}$};
+    \node (a) [above=0.8cm of d] {$\mathbf{a}$};
+    \node (uh) [downsampling, right=0.6cm of d] {$\uparrow 2$};
+    \node (ug) [downsampling, right=0.6cm of a] {$\uparrow 2$};
+    \node (h) [filter, right=0.6cm of uh] {$h_s$};
+    \node (g) [filter, right=0.6cm of ug] {$g_s$};
+    \node (plus) [downsampling, right=0.6cm of h] {$+$};
+    \node (x) [right=0.6cm of plus] {$\mathbf{x}$};
+
+    \draw [->] (d) -- (uh);
+    \draw [->] (a) -- (ug);
+    \draw [->] (uh) -- (h);
+    \draw [->] (ug) -- (g);
+    \draw [->] (h) -- (plus);
+    \draw [->] (g) -| (plus);
+    \draw [->] (plus) -- (x);
+\end{tikzpicture}

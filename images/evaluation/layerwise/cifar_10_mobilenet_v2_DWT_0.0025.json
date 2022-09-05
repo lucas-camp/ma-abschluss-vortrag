@@ -1,0 +1,1146 @@
+{
+  "Conv1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "expanded_conv_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "expanded_conv_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_1_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_1_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_1_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_2_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_2_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_2_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_3_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_3_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_3_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_4_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_4_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_4_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_5_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.8,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_5_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_5_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_6_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_6_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_6_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_7_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_7_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_7_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_8_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_8_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_8_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_9_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_9_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_9_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_10_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_10_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.4,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.2,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_10_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_11_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_11_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_11_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_12_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_12_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_12_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_13_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.1,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_13_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_13_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_14_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_14_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.05,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_14_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_15_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_15_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_15_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_16_expand": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_16_depthwise": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "block_16_project": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  },
+  "Conv_1": {
+    "mode": "DWT",
+    "clustering_mode": "filterwise_or_vector8",
+    "wavelet_configuration": {
+      "wavelet": "HAAR",
+      "level": 1
+    },
+    "clustering_algorithms": [
+      [
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        },
+        {
+          "num_clusters": 0.025,
+          "centroid_initialization": "KMEANSPLUSPLUS",
+          "random_state": 9001
+        }
+      ]
+    ]
+  }
+}
